@@ -3,7 +3,9 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 
-import comapnyRoutes from "./routes/company.js";
+/* IMPORTING ROUTES */
+import companyRoutes from "./routes/company.js";
+import contactsRoutes from "./routes/contact.js";
 
 /* CONFIG */
 dotenv.config();
@@ -27,5 +29,6 @@ mongoose.connect(process.env.MONGO_URL, {
 });
 
 /* ROUTES */
-app.use("/company", comapnyRoutes);
+app.use("/company", companyRoutes);
+app.use("/contact", contactsRoutes);
 

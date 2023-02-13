@@ -7,11 +7,13 @@ const CompanySchema = new mongoose.Schema({
     },
     organizationId: {
         type: Number,
-        required: true
+        required: true,
+        unique: true
     },
     customerId: {
         type: Number,
-        required: true
+        required: true,
+        unique: true
     }
 });
 
