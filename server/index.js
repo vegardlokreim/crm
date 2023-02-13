@@ -9,6 +9,7 @@ import companyRoutes from "./routes/company.js";
 import contactsRoutes from "./routes/contact.js";
 import taskRoutes from "./routes/task.js";
 import userRoutes from "./routes/user.js";
+import groupRoutes from "./routes/group.js";
 
 /* CONFIG */
 dotenv.config();
@@ -37,4 +38,5 @@ app.use("/company", companyRoutes);
 app.use("/contact", contactsRoutes);
 app.use("/task", taskRoutes);
 app.use("/user", userRoutes);
+app.use("/group", groupRoutes);
 
