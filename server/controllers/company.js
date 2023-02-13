@@ -17,3 +17,14 @@ export const createCompany = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 }
+
+export const addContact = async (req, res) => {
+    try {
+        const company = await Company.findById(req.params.id);
+        company.contacts.push(req.body);
+        await company.save();
+        res.status(201).json(company);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};

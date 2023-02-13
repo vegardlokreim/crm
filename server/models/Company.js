@@ -14,7 +14,20 @@ const CompanySchema = new mongoose.Schema({
         type: Number,
         required: true,
         unique: true
-    }
+    },
+    contacts: [
+        {
+            role: {
+                type: String,
+                required: true
+            },
+            contactId: {
+                type: mongoose.Types.ObjectId,
+                required: true,
+                ref: "Contact"
+            }
+        }
+    ]
 });
 
 const Company = mongoose.model("Company", CompanySchema);
