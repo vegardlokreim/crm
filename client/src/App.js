@@ -18,7 +18,7 @@ function App() {
     <div className="app">
       {
         data && data.map(comp => (
-          <h1>{comp.name.comanies}</h1>
+          <h1>{comp.name}</h1>
         ))
       }
     </div>
