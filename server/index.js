@@ -6,6 +6,8 @@ import dotenv from "dotenv";
 /* IMPORTING ROUTES */
 import companyRoutes from "./routes/company.js";
 import contactsRoutes from "./routes/contact.js";
+import taskRoutes from "./routes/task.js";
+import userRoutes from "./routes/user.js";
 
 /* CONFIG */
 dotenv.config();
@@ -31,4 +33,6 @@ mongoose.connect(process.env.MONGO_URL, {
 /* ROUTES */
 app.use("/company", companyRoutes);
 app.use("/contact", contactsRoutes);
+app.use("/task", taskRoutes);
+app.use("/user", userRoutes);
 
