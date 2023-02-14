@@ -8,7 +8,7 @@ const Users = () => {
     const theme = useTheme();
 
     return (
-        <h1>Users</h1>
+        <h1>Imagine a bunch of free Tonys running around in the wild, just waiting for a pokéball to catch'em all!</h1>
     );
 };
 

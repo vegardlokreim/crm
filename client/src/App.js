@@ -17,6 +17,9 @@ import Breakdown from "scenes/breakdown";
 import Users from "scenes/users";
 import Customer from "scenes/customers";
 import CustomerOverview from "scenes/customers/[id]";
+import Groups from "scenes/groups";
+import Tasks from "scenes/tasks";
+import Tickets from "scenes/tickets";
 
 
 function App() {
@@ -35,6 +38,9 @@ function App() {
               <Route path="/customers" element={<Customers />} />
               <Route path="/customer/:id" element={<CustomerOverview />} />
               <Route path="/users" element={<Users />} />
+              <Route path="/groups" element={<Groups />} />
+              <Route path="/tasks" element={<Tasks />} />
+              <Route path="/tickets" element={<Tickets />} />
 
               {/* <Route path="/overview" element={<Overview />} />
               <Route path="/daily" element={<Daily />} />
