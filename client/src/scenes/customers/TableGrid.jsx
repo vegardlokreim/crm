@@ -21,7 +21,7 @@ const TableGrid = ({ rows, columns, isLoading, navigateTo, heading, xs }) => {
       ></Box>
       <Box
         mt="40px"
-        height="28vh"
+        height="90vh"
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",

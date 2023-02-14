@@ -23,6 +23,10 @@ import {
 } from "@mui/icons-material";
 import TableGrid from "./TableGrid";
 
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+
 const actions = [
   { icon: <PermIdentityOutlined />, name: "Edit contacts" },
   { icon: <PaidOutlined />, name: "Edit recurring payments" },
@@ -136,56 +140,131 @@ export default function CustomerOverview() {
     },
   ];
 
+  function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && (
+          <Box sx={{ p: 3 }}>
+            <Typography>{children}</Typography>
+          </Box>
+        )}
+      </div>
+    );
+  }
+
+  TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.number.isRequired,
+    value: PropTypes.number.isRequired,
+  };
+
+  function a11yProps(index) {
+    return {
+      id: `simple-tab-${index}`,
+      "aria-controls": `simple-tabpanel-${index}`,
+    };
+  }
+
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <Box id="hideBottomTableRow" m="1.5rem 2.5rem">
       <Header
+        sx={{}}
         title={data ? data.name : "Running in circles finding that silly NAME"}
         subtitle="TODO: CLV, Gruppe, Bruker, Forrige år: Timer, Sum"
       />
-      <Grid container spacing={3}>
-        <TableGrid
-          rows={contacts}
-          columns={contactsColumns}
-          isLoading={isLoading}
-          navigateTo="Coming soon"
-          heading="Contacts"
-          xs={6}
-        />
-        <TableGrid
-          rows={contacts}
-          columns={contactsColumns}
-          isLoading={isLoading}
-          navigateTo="Coming soon"
-          heading="Recurring Payments"
-          xs={6}
-        />
-      </Grid>
-      <Grid container spacing={3} sx={{ mt: 5 }}>
-        <TableGrid
-          rows={flattenTasks}
-          columns={taskColumns}
-          isLoading={false}
-          navigateTo="Coming soon"
-          heading="Tasks"
-          xs={4}
-        />
-        <TableGrid
-          rows={contacts}
-          columns={contactsColumns}
-          isLoading={isLoading}
-          navigateTo="Coming soon"
-          heading="Ipsum"
-          xs={4}
-        />
-        <TableGrid
-          rows={contacts}
-          columns={contactsColumns}
-          isLoading={isLoading}
-          navigateTo="Coming soon"
-          heading="Dolor"
-          xs={4}
-        />
-      </Grid>
+      <Box sx={{ width: "100%", mt: "30px" }}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="basic tabs example"
+          >
+            <Tab label="Tasks" {...a11yProps(0)} />
+            <Tab label="Recurring Payments" {...a11yProps(1)} />
+            <Tab label="Contacts" {...a11yProps(2)} />
+            <Tab label="Lorem" {...a11yProps(3)} />
+            <Tab label="Ipsum" {...a11yProps(4)} />
+            <Tab label="Dolor" {...a11yProps(5)} />
+          </Tabs>
+        </Box>
+
+        <TabPanel value={value} index={0}>
+          <TableGrid
+            rows={flattenTasks}
+            columns={taskColumns}
+            isLoading={false}
+            navigateTo="Coming soon"
+            heading="Tasks"
+            xs={4}
+          />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <TableGrid
+            rows={contacts}
+            columns={contactsColumns}
+            isLoading={isLoading}
+            navigateTo="Coming soon"
+            heading="Recurring Payments"
+            xs={6}
+          />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <TableGrid
+            rows={contacts}
+            columns={contactsColumns}
+            isLoading={isLoading}
+            navigateTo="Coming soon"
+            heading="Contacts"
+            xs={6}
+          />
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+          <TableGrid
+            rows={flattenTasks}
+            columns={taskColumns}
+            isLoading={false}
+            navigateTo="Coming soon"
+            heading="Tasks"
+            xs={4}
+          />
+        </TabPanel>
+        <TabPanel value={value} index={4}>
+          <TableGrid
+            rows={contacts}
+            columns={contactsColumns}
+            isLoading={isLoading}
+            navigateTo="Coming soon"
+            heading="Ipsum"
+            xs={4}
+          />
+        </TabPanel>
+        <TabPanel value={value} index={5}>
+          <TableGrid
+            rows={contacts}
+            columns={contactsColumns}
+            isLoading={isLoading}
+            navigateTo="Coming soon"
+            heading="Dolor"
+            xs={4}
+          />
+        </TabPanel>
+      </Box>
+      {/* <Grid container spacing={3}></Grid>
+      <Grid container spacing={3} sx={{ mt: 5 }}></Grid> */}
       <Box
         sx={{
           height: 320,
