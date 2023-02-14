@@ -12,8 +12,6 @@ export default function Customer() {
   const navigate = useNavigate();
   const { data, isLoading } = useGetCustomersQuery();
 
-  console.log("data", data);
-
   const columns = [
     {
       field: "customerId",
@@ -39,17 +37,17 @@ export default function Customer() {
 
     {
       field: "numberOfContacts",
-      headerName: "Kontaktpersoner/Ongoing cases",
+      headerName: "Kontaktpersoner",
       flex: 0.5,
     },
   ];
 
   return (
-    <Box m="1.5rem 2.5rem">
-      <Header title="CUSTOMERS" subtitle="List of Customers" />
+    <Box m='1.5rem 2.5rem'>
+      <Header title='CUSTOMERS' subtitle='List of Customers' />
       <Box
-        mt="40px"
-        height="75vh"
+        mt='40px'
+        height='75vh'
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
