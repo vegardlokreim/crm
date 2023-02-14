@@ -29,7 +29,6 @@ export const getCompanies = async (req, res) => {
 export const getCompany = async (req, res) => {
     try {
         const company = await Company.findById(req.params.id).populate("contacts.contactId");;
-
         res.status(200).json(company);
     } catch (error) {
         res.status(500).json({ message: error.message });

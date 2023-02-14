@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Box, Grid, Typography, useTheme } from "@mui/material";
 import {
   useGetContactsFromCustomerQuery,
@@ -20,6 +21,7 @@ import {
   PaidOutlined,
   PermIdentityOutlined,
 } from "@mui/icons-material";
+import TableGrid from "./TableGrid";
 
 const actions = [
   { icon: <PermIdentityOutlined />, name: "Edit contacts" },
@@ -32,8 +34,25 @@ export default function CustomerOverview() {
   const { id } = useParams();
   const [checkboxSelection, setCheckboxSelection] = useState(true);
 
+  const [tasks, setTasks] = useState([]);
+
   const navigate = useNavigate();
   const { data, isLoading } = useGetCustomerQuery(id);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const getTasksUrl = `${process.env.REACT_APP_BASE_URL}/task/getTasksByUserId/${id}`;
+
+      console.log(getTasksUrl);
+
+      console.log(id);
+      const tasks = await axios.get(getTasksUrl);
+
+      setTasks(tasks.data);
+    };
+
+    fetchTasks();
+  }, []);
 
   const contacts = data?.contacts.map((contact) => {
     return {
@@ -46,7 +65,22 @@ export default function CustomerOverview() {
     };
   });
 
-  const columns = [
+  const flattenTasks = tasks?.map((task) => {
+    try {
+      const {
+        user: { firstName, lastName, email },
+      } = task;
+      return {
+        ...task,
+        userName: firstName + " " + lastName,
+      };
+    } catch (error) {
+      return { ...task };
+    }
+  });
+  console.log(flattenTasks);
+
+  const contactsColumns = [
     // {
     //   field: "_id",
     //   headerName: "MongoID",
@@ -79,9 +113,28 @@ export default function CustomerOverview() {
       flex: 1,
     },
   ];
-  if (data) {
-    console.log(data);
-  }
+  const taskColumns = [
+    {
+      field: "title",
+      headerName: "Title",
+      flex: 0.4,
+    },
+    {
+      field: "description",
+      headerName: "Description",
+      flex: 1,
+    },
+    {
+      field: "status",
+      headerName: "status",
+      flex: 0.5,
+    },
+    {
+      field: "userName",
+      headerName: "User",
+      flex: 0.8,
+    },
+  ];
 
   return (
     <Box id="hideBottomTableRow" m="1.5rem 2.5rem">
@@ -90,308 +143,48 @@ export default function CustomerOverview() {
         subtitle="TODO: CLV, Gruppe, Bruker, Forrige år: Timer, Sum"
       />
       <Grid container spacing={3}>
-        <Grid item xs={6}>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          ></Box>
-          <Box
-            mt="40px"
-            height="28vh"
-            sx={{
-              "& .MuiDataGrid-root": {
-                border: "none",
-              },
-              "& .MuiDataGrid-cell": {
-                borderBottom: "none",
-              },
-              "& .MuiDataGrid-columnHeaders": {
-                backgroundColor: theme.palette.background.alt,
-                color: theme.palette.secondary[100],
-                borderBottom: "none",
-              },
-              "& .MuiDataGrid-virtualScroller": {
-                backgroundColor: theme.palette.primary.light,
-              },
-              "& .MuiDataGrid-footerContainer": {
-                backgroundColor: theme.palette.background.alt,
-                color: theme.palette.secondary[100],
-                borderTop: "none",
-              },
-              "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-                color: `${theme.palette.secondary[200]} !important`,
-              },
-            }}
-          >
-            <Typography
-              variant="h4"
-              color={theme.palette.secondary[100]}
-              fontWeight="bold"
-              sx={{ mb: "20px" }}
-            >
-              Contacts
-            </Typography>
-            <DataGrid
-              loading={isLoading || !contacts}
-              getRowId={(row) => row._id}
-              rows={contacts || []}
-              columns={columns}
-              //checkboxSelection={checkboxSelection}
-              {...contacts}
-              disableSelectionOnClick
-              onClick={() => setCheckboxSelection(!checkboxSelection)}
-              onRowDoubleClick={(row) => {
-                navigate(`/customer/${row.id}`);
-              }}
-            />
-          </Box>
-        </Grid>
-        <Grid item xs={6}>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          ></Box>
-          <Box
-            mt="40px"
-            height="28vh"
-            sx={{
-              "& .MuiDataGrid-root": {
-                border: "none",
-              },
-              "& .MuiDataGrid-cell": {
-                borderBottom: "none",
-              },
-              "& .MuiDataGrid-columnHeaders": {
-                backgroundColor: theme.palette.background.alt,
-                color: theme.palette.secondary[100],
-                borderBottom: "none",
-              },
-              "& .MuiDataGrid-virtualScroller": {
-                backgroundColor: theme.palette.primary.light,
-              },
-              "& .MuiDataGrid-footerContainer": {
-                backgroundColor: theme.palette.background.alt,
-                color: theme.palette.secondary[100],
-                borderTop: "none",
-              },
-              "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-                color: `${theme.palette.secondary[200]} !important`,
-              },
-            }}
-          >
-            <Typography
-              variant="h4"
-              color={theme.palette.secondary[100]}
-              fontWeight="bold"
-              sx={{ mb: "20px" }}
-            >
-              Recurring payments
-            </Typography>
-            <DataGrid
-              loading={isLoading || !contacts}
-              getRowId={(row) => row._id}
-              rows={contacts || []}
-              columns={columns}
-              //checkboxSelection={checkboxSelection}
-              {...contacts}
-              disableSelectionOnClick
-              onClick={() => setCheckboxSelection(!checkboxSelection)}
-              onRowDoubleClick={(row) => {
-                navigate(`/customer/${row.id}`);
-              }}
-            />
-          </Box>
-        </Grid>
+        <TableGrid
+          rows={contacts}
+          columns={contactsColumns}
+          isLoading={isLoading}
+          navigateTo="Coming soon"
+          heading="Contacts"
+          xs={6}
+        />
+        <TableGrid
+          rows={contacts}
+          columns={contactsColumns}
+          isLoading={isLoading}
+          navigateTo="Coming soon"
+          heading="Recurring Payments"
+          xs={6}
+        />
       </Grid>
       <Grid container spacing={3} sx={{ mt: 5 }}>
-        <Grid item xs={4}>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          ></Box>
-          <Box
-            mt="40px"
-            height="28vh"
-            sx={{
-              "& .MuiDataGrid-root": {
-                border: "none",
-              },
-              "& .MuiDataGrid-cell": {
-                borderBottom: "none",
-              },
-              "& .MuiDataGrid-columnHeaders": {
-                backgroundColor: theme.palette.background.alt,
-                color: theme.palette.secondary[100],
-                borderBottom: "none",
-              },
-              "& .MuiDataGrid-virtualScroller": {
-                backgroundColor: theme.palette.primary.light,
-              },
-              "& .MuiDataGrid-footerContainer": {
-                backgroundColor: theme.palette.background.alt,
-                color: theme.palette.secondary[100],
-                borderTop: "none",
-              },
-              "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-                color: `${theme.palette.secondary[200]} !important`,
-              },
-            }}
-          >
-            <Typography
-              variant="h4"
-              color={theme.palette.secondary[100]}
-              fontWeight="bold"
-              sx={{ mb: "20px" }}
-            >
-              Meetings
-            </Typography>
-            <DataGrid
-              loading={isLoading || !contacts}
-              getRowId={(row) => row._id}
-              rows={contacts || []}
-              columns={columns}
-              //checkboxSelection={checkboxSelection}
-              {...contacts}
-              disableSelectionOnClick
-              onClick={() => setCheckboxSelection(!checkboxSelection)}
-              onRowDoubleClick={(row) => {
-                navigate(`/customer/${row.id}`);
-              }}
-            />
-          </Box>
-        </Grid>
-        <Grid item xs={4}>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          ></Box>
-          <Box
-            mt="40px"
-            height="28vh"
-            sx={{
-              "& .MuiDataGrid-root": {
-                border: "none",
-              },
-              "& .MuiDataGrid-cell": {
-                borderBottom: "none",
-              },
-              "& .MuiDataGrid-columnHeaders": {
-                backgroundColor: theme.palette.background.alt,
-                color: theme.palette.secondary[100],
-                borderBottom: "none",
-              },
-              "& .MuiDataGrid-virtualScroller": {
-                backgroundColor: theme.palette.primary.light,
-              },
-              "& .MuiDataGrid-footerContainer": {
-                backgroundColor: theme.palette.background.alt,
-                color: theme.palette.secondary[100],
-                borderTop: "none",
-              },
-              "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-                color: `${theme.palette.secondary[200]} !important`,
-              },
-            }}
-          >
-            <Typography
-              variant="h4"
-              color={theme.palette.secondary[100]}
-              fontWeight="bold"
-              sx={{ mb: "20px" }}
-            >
-              Quotes
-            </Typography>
-            <DataGrid
-              loading={isLoading || !contacts}
-              getRowId={(row) => row._id}
-              rows={contacts || []}
-              columns={columns}
-              //   checkboxSelection={checkboxSelection}
-              {...contacts}
-              disableSelectionOnClick
-              onClick={() => setCheckboxSelection(!checkboxSelection)}
-              onRowDoubleClick={(row) => {
-                navigate(`/customer/${row.id}`);
-              }}
-            />
-          </Box>
-        </Grid>
-        <Grid item xs={4}>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          ></Box>
-          <Box
-            mt="40px"
-            height="28vh"
-            sx={{
-              "& .MuiDataGrid-root": {
-                border: "none",
-              },
-              "& .MuiDataGrid-cell": {
-                borderBottom: "none",
-              },
-              "& .MuiDataGrid-columnHeaders": {
-                backgroundColor: theme.palette.background.alt,
-                color: theme.palette.secondary[100],
-                borderBottom: "none",
-              },
-              "& .MuiDataGrid-virtualScroller": {
-                backgroundColor: theme.palette.primary.light,
-              },
-              "& .MuiDataGrid-footerContainer": {
-                backgroundColor: theme.palette.background.alt,
-                color: theme.palette.secondary[100],
-                borderTop: "none",
-              },
-              "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-                color: `${theme.palette.secondary[200]} !important`,
-              },
-            }}
-          >
-            <Typography
-              variant="h4"
-              color={theme.palette.secondary[100]}
-              fontWeight="bold"
-              sx={{ mb: "20px" }}
-            >
-              Closed
-            </Typography>
-            <DataGrid
-              loading={isLoading || !contacts}
-              getRowId={(row) => row._id}
-              rows={contacts || []}
-              columns={columns}
-              //checkboxSelection={checkboxSelection}
-              {...contacts}
-              disableSelectionOnClick
-              onClick={() => setCheckboxSelection(!checkboxSelection)}
-              onRowDoubleClick={(row) => {
-                navigate(`/customer/${row.id}`);
-              }}
-            />
-          </Box>
-        </Grid>
+        <TableGrid
+          rows={flattenTasks}
+          columns={taskColumns}
+          isLoading={false}
+          navigateTo="Coming soon"
+          heading="Tasks"
+          xs={4}
+        />
+        <TableGrid
+          rows={contacts}
+          columns={contactsColumns}
+          isLoading={isLoading}
+          navigateTo="Coming soon"
+          heading="Ipsum"
+          xs={4}
+        />
+        <TableGrid
+          rows={contacts}
+          columns={contactsColumns}
+          isLoading={isLoading}
+          navigateTo="Coming soon"
+          heading="Dolor"
+          xs={4}
+        />
       </Grid>
       <Box
         sx={{

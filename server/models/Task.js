@@ -13,7 +13,11 @@ const TaskSchema = new mongoose.Schema({
     }, user: {
         type: mongoose.Types.ObjectId,
         ref: "User"
-    }
+    }, status: {
+        type: String,
+        enum: ["pending", "done", "active"],
+        default: "pending",
+    },
 });
 
 const Task = mongoose.model("Task", TaskSchema);
