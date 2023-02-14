@@ -53,6 +53,10 @@ const navItems = [
     icon: <GroupOutlined />,
   },
   {
+    text: "CreateUserTemp",
+    icon: <GroupOutlined />,
+  },
+  {
     text: "Groups",
     icon: <Groups2Outlined />,
   },

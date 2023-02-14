@@ -32,3 +32,26 @@ body,
   display: none;
 
 }
+
+#form{
+  display: flex;
+  flex-direction: column;
+  width:100%;
+  margin:0px auto;
+  align-items:center;
+}
+
+label.css-1sg7g1a-MuiFormLabel-root-MuiInputLabel-root.Mui-focused{
+  color:white;
+  font-weight: bold;
+  font-size:16px;
+}
+
+#create-user-form{
+  display:grid;
+  /*Make this a 2*3 grid*/
+  grid-template-columns: 1fr 1fr 1fr;
+  margin:0 auto;
+  align-items:center;
+  justify-content: center;
+}

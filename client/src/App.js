@@ -20,6 +20,7 @@ import CustomerOverview from "scenes/customers/[id]";
 import Groups from "scenes/groups";
 import Tasks from "scenes/tasks";
 import Tickets from "scenes/tickets";
+import CreateUser from "scenes/users/createUser";
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
               <Route path="/groups" element={<Groups />} />
               <Route path="/tasks" element={<Tasks />} />
               <Route path="/tickets" element={<Tickets />} />
+              <Route path="/createusertemp" element={<CreateUser />} />
 
               {/* <Route path="/overview" element={<Overview />} />
               <Route path="/daily" element={<Daily />} />

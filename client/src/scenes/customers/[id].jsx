@@ -140,7 +140,7 @@ export default function CustomerOverview() {
               getRowId={(row) => row._id}
               rows={contacts || []}
               columns={columns}
-              checkboxSelection={checkboxSelection}
+              //checkboxSelection={checkboxSelection}
               {...contacts}
               disableSelectionOnClick
               onClick={() => setCheckboxSelection(!checkboxSelection)}
@@ -200,7 +200,7 @@ export default function CustomerOverview() {
               getRowId={(row) => row._id}
               rows={contacts || []}
               columns={columns}
-              checkboxSelection={checkboxSelection}
+              //checkboxSelection={checkboxSelection}
               {...contacts}
               disableSelectionOnClick
               onClick={() => setCheckboxSelection(!checkboxSelection)}
@@ -262,7 +262,7 @@ export default function CustomerOverview() {
               getRowId={(row) => row._id}
               rows={contacts || []}
               columns={columns}
-              checkboxSelection={checkboxSelection}
+              //checkboxSelection={checkboxSelection}
               {...contacts}
               disableSelectionOnClick
               onClick={() => setCheckboxSelection(!checkboxSelection)}
@@ -322,7 +322,7 @@ export default function CustomerOverview() {
               getRowId={(row) => row._id}
               rows={contacts || []}
               columns={columns}
-              checkboxSelection={checkboxSelection}
+              //   checkboxSelection={checkboxSelection}
               {...contacts}
               disableSelectionOnClick
               onClick={() => setCheckboxSelection(!checkboxSelection)}
@@ -382,7 +382,7 @@ export default function CustomerOverview() {
               getRowId={(row) => row._id}
               rows={contacts || []}
               columns={columns}
-              checkboxSelection={checkboxSelection}
+              //checkboxSelection={checkboxSelection}
               {...contacts}
               disableSelectionOnClick
               onClick={() => setCheckboxSelection(!checkboxSelection)}
@@ -404,7 +404,11 @@ export default function CustomerOverview() {
           zIndex: 1000,
         }}
       >
-        <SpeedDial ariaLabel="SpeedDial basic example" icon={<SpeedDialIcon />}>
+        <SpeedDial
+          sx={{ position: "absolute", bottom: 16, right: 16 }}
+          ariaLabel="SpeedDial basic example"
+          icon={<SpeedDialIcon />}
+        >
           {actions.map((action) => (
             <SpeedDialAction
               key={action.name}
