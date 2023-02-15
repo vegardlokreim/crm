@@ -3,28 +3,27 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function ComboBox() {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await axios.get(
-        process.env.REACT_APP_BASE_URL + "/user"
-      );
-      setUsers(response.data);
-    };
-    fetchUsers();
-  }, []);
+export default function ComboBox({
+  label,
+  options,
+  setSelectedOption,
+  marginBottom,
+}) {
   return (
     <Autocomplete
       disablePortal
-      id='combo-box-demo'
-      options={users.map((user) => ({
-        label: user.firstName + " " + user.lastName + " - " + user.email,
-        value: user._id,
-      }))}
-      sx={{ width: "100%" }}
-      renderInput={(params) => <TextField {...params} label='Users' />}
+      id="combo-box-demo"
+      isOptionEqualToValue={(option, value) => option.value === value.value}
+      options={options}
+      sx={{ width: "100%", mb: { marginBottom } }}
+      renderInput={(params) => <TextField {...params} label={label} />}
+      onChange={(event, selectedOption) => {
+        try {
+          setSelectedOption(selectedOption.value);
+        } catch (err) {
+          setSelectedOption("other");
+        }
+      }}
     />
   );
 }

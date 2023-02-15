@@ -16,38 +16,80 @@ export default function Customer() {
     {
       field: "customerId",
       headerName: "ID",
-      flex: 0.2,
+      flex: 0.5,
     },
     {
       field: "organizationId",
       headerName: "Organization ID",
-      flex: 0.2,
+      flex: 0.8,
     },
-    {
-      field: "_id",
-      headerName: "MongoID",
-      flex: 0.4,
-    },
+    // {
+    //   field: "_id",
+    //   headerName: "MongoID",
+    //   flex: 1,
+    // },
 
     {
       field: "name",
       headerName: "Name",
       flex: 1,
     },
-
     {
-      field: "numberOfContacts",
-      headerName: "Kontaktpersoner",
-      flex: 0.5,
+      field: "primaryContactName",
+      headerName: "Primary Contact",
+      flex: 1,
+      renderCell: (params) => {
+        const { contacts } = params.row;
+        const primaryContact = contacts.find((c) => c.role === "primary");
+
+        if (!primaryContact) {
+          return "N/A";
+        }
+
+        const { firstName, lastName } = primaryContact.contactId;
+        return `${firstName} ${lastName}`;
+      },
+    },
+    {
+      field: "primaryContactEmail",
+      headerName: "Primary Contact Email",
+      flex: 1,
+      renderCell: (params) => {
+        const { contacts } = params.row;
+        const primaryContact = contacts.find((c) => c.role === "primary");
+
+        if (!primaryContact) {
+          return "N/A";
+        }
+
+        const { email } = primaryContact.contactId;
+        return email;
+      },
+    },
+    {
+      field: "primaryContactPhone",
+      headerName: "Primary Contact Phone",
+      flex: 1,
+      renderCell: (params) => {
+        const { contacts } = params.row;
+        const primaryContact = contacts.find((c) => c.role === "primary");
+
+        if (!primaryContact) {
+          return "N/A";
+        }
+
+        const { phone } = primaryContact.contactId;
+        return phone;
+      },
     },
   ];
 
   return (
-    <Box m='1.5rem 2.5rem'>
-      <Header title='CUSTOMERS' subtitle='List of Customers' />
+    <Box m="1.5rem 2.5rem">
+      <Header title="CUSTOMERS" subtitle="List of Customers" />
       <Box
-        mt='40px'
-        height='75vh'
+        mt="40px"
+        height="75vh"
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",

@@ -1,48 +1,27 @@
-import React, { useState } from "react";
-import { Box, useTheme } from "@mui/material";
-import { useGetCustomersQuery, useGetUserQuery } from "state/api";
-import Header from "components/Header";
+import { useTheme } from "@emotion/react";
+import { Box, Grid, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Users() {
+const TableGrid = ({ rows, columns, isLoading, navigateTo, heading, xs }) => {
+  const navigate = useNavigate();
   const theme = useTheme();
   const [checkboxSelection, setCheckboxSelection] = useState(true);
 
-  const navigate = useNavigate();
-  const { data, isLoading } = useGetUserQuery();
-
-  console.log(data);
-
-  const columns = [
-    {
-      field: "firstName",
-      headerName: "First Name",
-      flex: 0.5,
-    },
-    {
-      field: "lastName",
-      headerName: "Last Name",
-      flex: 0.8,
-    },
-    {
-      field: "email",
-      headerName: "Email",
-      flex: 1,
-    },
-    {
-      field: "phone",
-      headerName: "Phone",
-      flex: 1,
-    },
-  ];
-
   return (
-    <Box m="1.5rem 2.5rem">
-      <Header title="USERS" subtitle="List of Customers" />
+    <Grid item xs={xs}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      ></Box>
       <Box
         mt="40px"
-        height="75vh"
+        height="50vh"
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -68,20 +47,30 @@ export default function Users() {
           },
         }}
       >
+        <Typography
+          variant="h4"
+          color={theme.palette.secondary[100]}
+          fontWeight="bold"
+          sx={{ mb: "20px" }}
+        >
+          {heading}
+        </Typography>
         <DataGrid
-          loading={isLoading || !data}
+          loading={isLoading || !rows}
           getRowId={(row) => row._id}
-          rows={data || []}
+          rows={rows || []}
           columns={columns}
-          checkboxSelection={checkboxSelection}
-          {...data}
+          //checkboxSelection={checkboxSelection}
+          {...rows}
           disableSelectionOnClick
           onClick={() => setCheckboxSelection(!checkboxSelection)}
           onRowDoubleClick={(row) => {
-            navigate(`/user/${row.id}`);
+            navigate(navigateTo);
           }}
         />
       </Box>
-    </Box>
+    </Grid>
   );
-}
+};
+
+export default TableGrid;

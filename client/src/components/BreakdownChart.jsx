@@ -3,11 +3,13 @@ import { ResponsivePie } from "@nivo/pie";
 import { Box, Typography, useTheme } from "@mui/material";
 import { useGetSalesQuery } from "state/api";
 
-const BreakdownChart = ({ isDashboard = false }) => {
-  const { data, isLoading } = useGetSalesQuery();
+const BreakdownChart = ({
+  isDashboard = false,
+  won = 0,
+  lost = 0,
+  pending = 0,
+}) => {
   const theme = useTheme();
-
-  if (!data || isLoading) return "Loading...";
 
   const colors = [
     theme.palette.secondary[500],
@@ -15,23 +17,30 @@ const BreakdownChart = ({ isDashboard = false }) => {
     theme.palette.secondary[300],
     theme.palette.secondary[500],
   ];
-  const formattedData = Object.entries(data.salesByCategory).map(
-    ([category, sales], i) => ({
-      id: category,
-      label: category,
-      value: sales,
-      color: colors[i],
-    })
-  );
+
+  const formattedData = [
+    {
+      id: "won",
+      label: "Won",
+      value: won,
+      color: "hsl(104, 70%, 50%)",
+    },
+    {
+      id: "pending",
+      label: "Pending",
+      value: pending,
+      color: "hsl(162, 70%, 50%)",
+    },
+    {
+      id: "lost",
+      label: "Lost",
+      value: lost,
+      color: "hsl(291, 70%, 50%)",
+    },
+  ].filter((dataPoint) => dataPoint.value !== 0);
 
   return (
-    <Box
-      height={isDashboard ? "400px" : "100%"}
-      width={undefined}
-      minHeight={isDashboard ? "325px" : undefined}
-      minWidth={isDashboard ? "325px" : undefined}
-      position="relative"
-    >
+    <Box height={"400px"} width={undefined} position="relative">
       <ResponsivePie
         data={formattedData}
         theme={{
@@ -128,11 +137,7 @@ const BreakdownChart = ({ isDashboard = false }) => {
             ? "translate(-75%, -170%)"
             : "translate(-50%, -100%)",
         }}
-      >
-        <Typography variant="h6">
-          {!isDashboard && "Total:"} ${data.yearlySalesTotal}
-        </Typography>
-      </Box>
+      ></Box>
     </Box>
   );
 };

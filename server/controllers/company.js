@@ -1,17 +1,44 @@
 import Company from "../models/Company.js";
+import Task from "../models/Task.js";
 import mongoose from "mongoose";
 
 export const getCompanies = async (req, res) => {
     try {
-        const companies = await Company.find().populate("contacts.contactId");
-        const result = companies.map(company => ({
-            ...company._doc,
-            numberOfContacts: company.contacts.length
-        }));
-        res.status(200).json(result);
+        // const companies = await Company.aggregate([
+        //     {
+        //         $lookup: {
+        //             from: "tasks",
+        //             localField: "_id",
+        //             foreignField: "companyId",
+        //             as: "tasks"
+        //         }
+        //     },
+        //     {
+        //         $addFields: {
+        //             taskCount: { $size: "$tasks" }
+        //         }
+        //     },
+        //     {
+        //         $project: {
+        //             tasks: 0
+        //         }
+        //     }
+        // ]);
+        // const companiesWithContactsCount = companies.map(company => {
+        //     const contactCount = company.contacts ? company.contacts.length : 0;
+        //     return {
+        //         ...company,
+        //         contactCount
+        //     };
+        // });
+
+        const companies = await Company.find().populate(["contacts.contactId"]);
+
+        res.status(200).json(companies);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
+
 }
 
 // export const getCompany = async (req, res) => {

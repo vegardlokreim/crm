@@ -21,15 +21,14 @@ import {
   PaidOutlined,
   PermIdentityOutlined,
 } from "@mui/icons-material";
-import TableGrid from "./TableGrid";
+import TableGrid from "components/TableGrid";
 
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import AddContact from "./AddContact";
+
 import PieChart from "components/PieChart";
 import BreakdownChart from "components/BreakdownChart";
-import CustomerDashboard from "./CustomerDashboard";
 
 {
   /* SpeedDial actions */
@@ -41,7 +40,7 @@ const actions = [
   { icon: <PaidOutlined />, name: "Edit recurring payments" },
 ];
 
-export default function CustomerOverview() {
+export default function UserOverview() {
   const theme = useTheme();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -260,7 +259,9 @@ export default function CustomerOverview() {
     <Box id="hideBottomTableRow" m="1.5rem 2.5rem">
       <Header
         sx={{}}
-        title={data ? data.name : "Running in circles finding that silly NAME"}
+        title={
+          data ? data.firstName : "Running in circles finding that silly NAME"
+        }
         subtitle="TODO: CLV, Gruppe, Bruker, Forrige år: Timer, Sum"
       />
 
@@ -280,14 +281,7 @@ export default function CustomerOverview() {
         </Box>
 
         {/* OVERVIEW TAB */}
-        <TabPanel value={value} index={0}>
-          <CustomerDashboard
-            won={totalWon}
-            pending={totalPending}
-            lost={totalLost}
-            isDasboard={true}
-          />
-        </TabPanel>
+        <TabPanel value={value} index={0}></TabPanel>
         {/* TASK TAB */}
         <TabPanel value={value} index={1}>
           <TableGrid
@@ -373,7 +367,7 @@ export default function CustomerOverview() {
         {(() => {
           switch (selectedAction) {
             case "Add contact":
-              return <AddContact id={id} />;
+              return "Add User";
             case "Edit contacts":
               return "Edit contacts";
             case "Edit recurring payments":
