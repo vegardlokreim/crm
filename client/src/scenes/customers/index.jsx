@@ -57,15 +57,19 @@ export default function Customer() {
       headerName: "Primary Contact",
       flex: 1,
       renderCell: (params) => {
-        const { contacts } = params.row;
-        const primaryContact = contacts.find((c) => c.role === "primary");
+        try {
+          const { contacts } = params.row;
+          const primaryContact = contacts?.find((c) => c.role === "primary");
 
-        if (!primaryContact) {
+          if (!primaryContact) {
+            return "N/A";
+          }
+
+          const { firstName, lastName } = primaryContact.contactId;
+          return `${firstName} ${lastName}`;
+        } catch (error) {
           return "N/A";
         }
-
-        const { firstName, lastName } = primaryContact.contactId;
-        return `${firstName} ${lastName}`;
       },
     },
     {
@@ -73,15 +77,19 @@ export default function Customer() {
       headerName: "Primary Contact Email",
       flex: 1,
       valueGetter: (params) => {
-        const { contacts } = params.row;
-        const primaryContact = contacts.find((c) => c.role === "primary");
+        try {
+          const { contacts } = params.row;
+          const primaryContact = contacts?.find((c) => c.role === "primary");
 
-        if (!primaryContact) {
+          if (!primaryContact) {
+            return "N/A";
+          }
+
+          const { email } = primaryContact.contactId;
+          return email;
+        } catch (error) {
           return "N/A";
         }
-
-        const { email } = primaryContact.contactId;
-        return email;
       },
       renderCell: (params) => {
         const email = params.value;
@@ -104,15 +112,19 @@ export default function Customer() {
       headerName: "Primary Contact Phone",
       flex: 1,
       valueGetter: (params) => {
-        const { contacts } = params.row;
-        const primaryContact = contacts.find((c) => c.role === "primary");
+        try {
+          const { contacts } = params.row;
+          const primaryContact = contacts?.find((c) => c.role === "primary");
 
-        if (!primaryContact) {
+          if (!primaryContact) {
+            return "N/A";
+          }
+
+          const { phone } = primaryContact.contactId;
+          return phone;
+        } catch (error) {
           return "N/A";
         }
-
-        const { phone } = primaryContact.contactId;
-        return phone;
       },
       renderCell: (params) => {
         const phone = params.value;
@@ -133,11 +145,11 @@ export default function Customer() {
   ];
 
   return (
-    <Box m='1.5rem 2.5rem'>
-      <Header title='CUSTOMERS' subtitle='List of Customers' />
+    <Box m="1.5rem 2.5rem">
+      <Header title="CUSTOMERS" subtitle="List of Customers" />
       <Box
-        mt='40px'
-        height='75vh'
+        mt="40px"
+        height="75vh"
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -207,7 +219,7 @@ export default function Customer() {
       >
         <SpeedDial
           sx={{ position: "absolute", bottom: 16, right: 16 }}
-          ariaLabel='SpeedDial basic example'
+          ariaLabel="SpeedDial basic example"
           icon={<SpeedDialIcon />}
         >
           {actions.map((action) => (
@@ -234,7 +246,7 @@ export default function Customer() {
             paddingTop: "50px",
           },
         }}
-        anchor='right'
+        anchor="right"
         open={selectedAction !== null}
         onClose={() => setSelectedAction(null)}
       >
