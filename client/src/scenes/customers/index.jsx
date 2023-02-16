@@ -54,7 +54,7 @@ export default function Customer() {
       field: "primaryContactEmail",
       headerName: "Primary Contact Email",
       flex: 1,
-      renderCell: (params) => {
+      valueGetter: (params) => {
         const { contacts } = params.row;
         const primaryContact = contacts.find((c) => c.role === "primary");
 
@@ -65,12 +65,27 @@ export default function Customer() {
         const { email } = primaryContact.contactId;
         return email;
       },
+      renderCell: (params) => {
+        const email = params.value;
+        return email ? email : "N/A";
+      },
+      filterOperators: [
+        {
+          label: "Contains",
+          value: "contains",
+          getApplyFilterFn: (filterItem) => (params) => {
+            const email = params.value.toLowerCase();
+            const filter = filterItem.value.toLowerCase();
+            return email.includes(filter);
+          },
+        },
+      ],
     },
     {
       field: "primaryContactPhone",
       headerName: "Primary Contact Phone",
       flex: 1,
-      renderCell: (params) => {
+      valueGetter: (params) => {
         const { contacts } = params.row;
         const primaryContact = contacts.find((c) => c.role === "primary");
 
@@ -81,6 +96,21 @@ export default function Customer() {
         const { phone } = primaryContact.contactId;
         return phone;
       },
+      renderCell: (params) => {
+        const phone = params.value;
+        return phone ? phone : "N/A";
+      },
+      filterOperators: [
+        {
+          label: "Contains",
+          value: "contains",
+          getApplyFilterFn: (filterItem) => (params) => {
+            const phone = params.value.toLowerCase();
+            const filter = filterItem.value.toLowerCase();
+            return phone.includes(filter);
+          },
+        },
+      ],
     },
   ];
 

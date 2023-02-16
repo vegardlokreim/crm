@@ -4,6 +4,7 @@ import { Box, Grid, Typography, useTheme, Drawer } from "@mui/material";
 import {
   useGetContactsFromCustomerQuery,
   useGetCustomerQuery,
+  useGetUserQuery,
 } from "state/api";
 import Header from "components/Header";
 import { DataGrid } from "@mui/x-data-grid";
@@ -47,7 +48,7 @@ export default function UserOverview() {
   const [checkboxSelection, setCheckboxSelection] = useState(true);
   const [selectedAction, setSelectedAction] = useState(null);
   const [tasks, setTasks] = useState([]);
-  const { data, isLoading } = useGetCustomerQuery(id);
+  const { data, isLoading } = useGetUserQuery(id);
 
   // Deals:
   const [deals, setDeals] = useState([]);
@@ -68,17 +69,6 @@ export default function UserOverview() {
 
     fetchTasks();
   }, [id]);
-
-  const contacts = data?.contacts.map((contact) => {
-    return {
-      _id: contact._id,
-      firstName: contact.contactId.firstName,
-      lastName: contact.contactId.lastName,
-      email: contact.contactId.email,
-      phone: contact.contactId.phone,
-      role: contact.role,
-    };
-  });
 
   const flattenTasks = tasks?.map((task) => {
     try {
@@ -185,7 +175,6 @@ export default function UserOverview() {
       headerName: "User",
       flex: 0.8,
       renderCell: (params) => {
-        console.log(params);
         return params.value.firstName + " " + params.value.lastName;
       },
       sortComparator: (v1, v2, param1, param2) => {
@@ -260,9 +249,11 @@ export default function UserOverview() {
       <Header
         sx={{}}
         title={
-          data ? data.firstName : "Running in circles finding that silly NAME"
+          data
+            ? data.firstName + " " + data.lastName
+            : "Running in circles finding that silly NAME"
         }
-        subtitle="TODO: CLV, Gruppe, Bruker, Forrige år: Timer, Sum"
+        subtitle="The greatest employee of all time"
       />
 
       {/* Tabs */}
@@ -306,14 +297,7 @@ export default function UserOverview() {
         </TabPanel>
         {/* CONTACTS TAB */}
         <TabPanel value={value} index={3}>
-          <TableGrid
-            rows={contacts}
-            columns={contactsColumns}
-            isLoading={isLoading}
-            navigateTo="Coming soon"
-            heading="Contacts"
-            xs={6}
-          />
+          contacts
         </TabPanel>
       </Box>
       {/* <Grid container spacing={3}></Grid>

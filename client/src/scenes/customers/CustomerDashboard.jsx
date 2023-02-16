@@ -20,12 +20,15 @@ import BreakdownChart from "components/BreakdownChart";
 import OverviewChart from "components/OverviewChart";
 import { useGetDashboardQuery } from "state/api";
 import StatBox from "components/StatBox";
+import TableGrid from "./TableGrid";
 
 const CustomerDashboard = ({
   isDashboard = false,
   won = 0,
   lost = 0,
   pending = 0,
+  deals,
+  dealsColumns,
 }) => {
   const theme = useTheme();
   const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
@@ -81,7 +84,14 @@ const CustomerDashboard = ({
           p="1rem"
           borderRadius="0.55rem"
         >
-          <OverviewChart view="sales" isDashboard={true} />
+          <TableGrid
+            rows={deals}
+            columns={dealsColumns}
+            isLoading={isLoading}
+            navigateTo="Coming soon"
+            heading="Deals"
+            xs={6}
+          />
         </Box>
 
         <Box

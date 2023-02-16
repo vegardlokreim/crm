@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, useTheme } from "@mui/material";
-import { useGetCustomersQuery, useGetUserQuery } from "state/api";
+import { useGetUsersQuery } from "state/api";
 import Header from "components/Header";
 import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
@@ -10,9 +10,7 @@ export default function Users() {
   const [checkboxSelection, setCheckboxSelection] = useState(true);
 
   const navigate = useNavigate();
-  const { data, isLoading } = useGetUserQuery();
-
-  console.log(data);
+  const { data, isLoading } = useGetUsersQuery();
 
   const columns = [
     {

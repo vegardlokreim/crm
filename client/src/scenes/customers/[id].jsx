@@ -186,7 +186,6 @@ export default function CustomerOverview() {
       headerName: "User",
       flex: 0.8,
       renderCell: (params) => {
-        console.log(params);
         return params.value.firstName + " " + params.value.lastName;
       },
       sortComparator: (v1, v2, param1, param2) => {
@@ -209,11 +208,7 @@ export default function CustomerOverview() {
         aria-labelledby={`simple-tab-${index}`}
         {...other}
       >
-        {value === index && (
-          <Box sx={{ p: 3 }}>
-            <Typography>{children}</Typography>
-          </Box>
-        )}
+        {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
       </div>
     );
   }
@@ -286,6 +281,8 @@ export default function CustomerOverview() {
             pending={totalPending}
             lost={totalLost}
             isDasboard={true}
+            deals={deals}
+            dealsColumns={dealsColumns}
           />
         </TabPanel>
         {/* TASK TAB */}
@@ -306,7 +303,7 @@ export default function CustomerOverview() {
             columns={dealsColumns}
             isLoading={isLoading}
             navigateTo="Coming soon"
-            heading="Recurring Payments"
+            heading="Deals"
             xs={6}
           />
         </TabPanel>
@@ -373,7 +370,7 @@ export default function CustomerOverview() {
         {(() => {
           switch (selectedAction) {
             case "Add contact":
-              return <AddContact id={id} />;
+              return <AddContact id={id} closeDrawer={setSelectedAction} />;
             case "Edit contacts":
               return "Edit contacts";
             case "Edit recurring payments":

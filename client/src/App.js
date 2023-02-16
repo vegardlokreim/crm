@@ -21,6 +21,7 @@ import Groups from "scenes/groups";
 import Tasks from "scenes/tasks";
 import Tickets from "scenes/tickets";
 import UserOverview from "scenes/users/[id]";
+import Deals from "scenes/deals";
 
 
 
@@ -35,8 +36,8 @@ function App() {
           <CssBaseline />
           <Routes>
             <Route element={<Layout />}>
-              <Route path="/" element={<Navigate to="/dashboard" replace />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/" element={<Navigate to="/customers" replace />} />
+              {/* <Route path="/dashboard" element={<Dashboard />} /> */}
               {/* <Route path="/products" element={<Products />} /> */}
               <Route path="/customers" element={<Customers />} />
               <Route path="/customer/:id" element={<CustomerOverview />} />
@@ -45,6 +46,7 @@ function App() {
               <Route path="/groups" element={<Groups />} />
               <Route path="/tasks" element={<Tasks />} />
               <Route path="/tickets" element={<Tickets />} />
+              <Route path="/deals" element={<Deals />} />
 
 
               {/* <Route path="/overview" element={<Overview />} />

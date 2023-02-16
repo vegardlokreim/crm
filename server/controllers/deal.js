@@ -3,7 +3,15 @@ import Deal from "../models/Deal.js";
 //endpoint to get all deals
 export const getDeals = async (req, res) => {
     try {
-        const deals = await Deal.find();
+        const deals = await Deal.find().populate(["companyId", "userId"]);
+        res.status(200).json(deals);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+export const getDealsByStatus = async (req, res) => {
+    try {
+        const deals = await Deal.find({ status: req.params.status }).populate(["companyId", "userId"]);
         res.status(200).json(deals);
     } catch (error) {
         res.status(500).json({ message: error.message });

@@ -13,11 +13,16 @@ export const api = createApi({
     "Admins",
     "Performance",
     "Dashboard",
-    "Contacts"
+    "Contacts",
+    "Deals"
   ],
   endpoints: (build) => ({
     getUser: build.query({
-      query: (id) => `user`,
+      query: (id) => `user/${id}`,
+      providesTags: ["User"],
+    }),
+    getUsers: build.query({
+      query: () => `user`,
       providesTags: ["User"],
     }),
     getProducts: build.query({
@@ -72,10 +77,27 @@ export const api = createApi({
       }),
       providesTags: ["Users"],
     }),
+    getDeals: build.query({
+      query: () => `deal`,
+      providesTags: ["Deals"],
+    }),
+    getDealsByStatus: build.query({
+      query: (status) => `deal/getDealsByStatus/${status}`,
+      providesTags: ["Deals"],
+    }),
+    createUser: build.query({
+      query: (data) => ({
+        url: "deal/createDeal",
+        method: "POST",
+        data: data,
+      }),
+      providesTags: ["Deals"],
+    }),
   }),
 });
 
 export const {
+  useGetUsersQuery,
   useGetUserQuery,
   useGetProductsQuery,
   useGetCustomersQuery,
@@ -88,4 +110,7 @@ export const {
   useGetUserPerformanceQuery,
   useGetDashboardQuery,
   useCreateUserQuery,
+  useGetDealsQuery,
+  useGetDealsByStatusQuery,
+  useCreateDealQuery,
 } = api;

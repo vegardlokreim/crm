@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ComboBox from "./ComboBox";
 
-const AddContact = ({ id }) => {
+const AddContact = ({ id, closeDrawer }) => {
   const [contacts, setContacts] = useState([]);
   const [selectedContact, setSelectedContact] = useState("");
   const [selectedRole, setSelectedRole] = useState("");
@@ -31,6 +31,7 @@ const AddContact = ({ id }) => {
         contactId: selectedContact,
       }
     );
+    closeDrawer(null);
   };
   return (
     <>

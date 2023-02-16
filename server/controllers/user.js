@@ -9,6 +9,14 @@ export const getUsers = async (req, res) => {
     }
 }
 
+export const getUser = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
 export const createUser = async (req, res) => {
     try {
         const user = await User.create(req.body);

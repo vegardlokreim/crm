@@ -40,20 +40,16 @@ import FlexBetween from "./FlexBetween";
 import profileImage from "assets/profile.jpeg";
 
 const navItems = [
-  {
-    text: "Dashboard",
-    icon: <HomeOutlined />,
-  },
+  // {
+  //   text: "Dashboard",
+  //   icon: <HomeOutlined />,
+  // },
   {
     text: "Customers",
     icon: <InsertEmoticonOutlined />,
   },
   {
     text: "Users",
-    icon: <GroupOutlined />,
-  },
-  {
-    text: "CreateUserTemp",
     icon: <GroupOutlined />,
   },
   {
