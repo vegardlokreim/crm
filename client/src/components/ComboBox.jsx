@@ -6,14 +6,14 @@ import { Box } from "@mui/material";
 
 export default function ComboBox({
   label,
-  options,
+  options = [],
   setSelectedOption,
   marginBottom,
 }) {
   return (
     <Autocomplete
       disablePortal
-      id="combo-box-demo"
+      id='combo-box-demo'
       isOptionEqualToValue={(option, value) => option.value === value.value}
       options={options}
       sx={{ width: "100%", mb: { marginBottom } }}

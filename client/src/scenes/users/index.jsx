@@ -1,13 +1,38 @@
 import React, { useState } from "react";
-import { Box, useTheme } from "@mui/material";
+import {
+  Box,
+  Drawer,
+  SpeedDial,
+  SpeedDialAction,
+  SpeedDialIcon,
+  Tab,
+  Tabs,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { useGetUsersQuery } from "state/api";
 import Header from "components/Header";
 import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
+import TableGrid from "components/TableGrid";
+import PropTypes from "prop-types";
+import {
+  ApartmentOutlined,
+  PaidOutlined,
+  PermIdentityOutlined,
+  PostAddOutlined,
+} from "@mui/icons-material";
+import CreateUser from "./CreateUser";
 
 export default function Users() {
   const theme = useTheme();
   const [checkboxSelection, setCheckboxSelection] = useState(true);
+
+  // STATE TO CONTROLL DRAWER OPEN/CLOSE //
+  const [selectedAction, setSelectedAction] = useState(null);
+
+  // ACTIONS FOR SPEED DIAL //
+  const actions = [{ icon: <PostAddOutlined />, name: "Create user" }];
 
   const navigate = useNavigate();
   const { data, isLoading } = useGetUsersQuery();
@@ -36,11 +61,11 @@ export default function Users() {
   ];
 
   return (
-    <Box m="1.5rem 2.5rem">
-      <Header title="USERS" subtitle="List of Customers" />
+    <Box m='1.5rem 2.5rem'>
+      <Header title='USERS' subtitle='List of Customers' />
       <Box
-        mt="40px"
-        height="75vh"
+        mt='40px'
+        height='75vh'
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -80,6 +105,65 @@ export default function Users() {
           }}
         />
       </Box>
+      <Box
+        sx={{
+          height: 320,
+          transform: "translateZ(0px)",
+          flexGrow: 1,
+          position: "fixed",
+          bottom: 0,
+          right: 16,
+          zIndex: 1000,
+        }}
+      >
+        <SpeedDial
+          sx={{ position: "absolute", bottom: 16, right: 16 }}
+          ariaLabel='SpeedDial basic example'
+          icon={<SpeedDialIcon />}
+        >
+          {actions.map((action) => (
+            <SpeedDialAction
+              key={action.name}
+              icon={action.icon}
+              tooltipTitle={action.name}
+              onClick={() => setSelectedAction(action.name)}
+            />
+          ))}
+        </SpeedDial>
+      </Box>
+
+      {/* DRAWER */}
+      <Drawer
+        sx={{
+          width: 500,
+          "& .MuiDrawer-paper": {
+            color: theme.palette.secondary[200],
+            backgroundColor: theme.palette.background.alt,
+            boxSixing: "border-box",
+            width: 500,
+            padding: "20px",
+            paddingTop: "50px",
+          },
+        }}
+        anchor='right'
+        open={selectedAction !== null}
+        onClose={() => setSelectedAction(null)}
+      >
+        {(() => {
+          switch (selectedAction) {
+            case "Create user":
+              return <CreateUser closeDrawer={setSelectedAction} />;
+            case "Edit contacts":
+              return "Edit contacts";
+            case "Edit recurring payments":
+              return "<h1>Edit recurring payments</h1>";
+            case "Edit customer":
+              return "<h1>Edit customer</h1>";
+            default:
+              return null;
+          }
+        })()}
+      </Drawer>
     </Box>
   );
 }

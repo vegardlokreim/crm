@@ -85,7 +85,11 @@ export const api = createApi({
       query: (status) => `deal/getDealsByStatus/${status}`,
       providesTags: ["Deals"],
     }),
-    createUser: build.query({
+    getTasks: build.query({
+      query: () => `task`,
+      providesTags: ["Deals"],
+    }),
+    createDeal: build.query({
       query: (data) => ({
         url: "deal/createDeal",
         method: "POST",
@@ -113,4 +117,5 @@ export const {
   useGetDealsQuery,
   useGetDealsByStatusQuery,
   useCreateDealQuery,
+  useGetTasksQuery,
 } = api;

@@ -119,10 +119,9 @@ export default function Users() {
 
   function TabPanel(props) {
     const { children, value, index, ...other } = props;
-
     return (
       <div
-        role="tabpanel"
+        role='tabpanel'
         hidden={value !== index}
         id={`simple-tabpanel-${index}`}
         aria-labelledby={`simple-tab-${index}`}
@@ -153,8 +152,8 @@ export default function Users() {
   };
 
   return (
-    <Box id="hideBottomTableRow" m="1.5rem 2.5rem">
-      <Header sx={{}} title="DEALS" subtitle="all them deals" />
+    <Box id='hideBottomTableRow' m='1.5rem 2.5rem'>
+      <Header sx={{}} title='DEALS' subtitle='all them deals' />
 
       {/* Tabs */}
       <Box sx={{ width: "100%", mt: "30px" }}>
@@ -162,12 +161,12 @@ export default function Users() {
           <Tabs
             value={value}
             onChange={handleChange}
-            aria-label="basic tabs example"
+            aria-label='basic tabs example'
           >
-            <Tab label="All deals" {...a11yProps(0)} />
-            <Tab label="Pending" {...a11yProps(1)} />
-            <Tab label="Won" {...a11yProps(2)} />
-            <Tab label="Lost" {...a11yProps(3)} />
+            <Tab label='All deals' {...a11yProps(0)} />
+            <Tab label='Pending' {...a11yProps(1)} />
+            <Tab label='Won' {...a11yProps(2)} />
+            <Tab label='Lost' {...a11yProps(3)} />
           </Tabs>
         </Box>
 
@@ -177,8 +176,8 @@ export default function Users() {
             rows={allDeals}
             columns={columns}
             isLoading={allDealsLoading}
-            navigateTo="Coming soon"
-            heading="All deals"
+            navigateTo='Coming soon'
+            heading='All deals'
             xs={4}
           />
         </TabPanel>
@@ -188,8 +187,8 @@ export default function Users() {
             rows={pendingDeals}
             columns={columns}
             isLoading={pendingDealsLoading}
-            navigateTo="Coming soon"
-            heading="Pending deals"
+            navigateTo='Coming soon'
+            heading='Pending deals'
             xs={4}
           />
         </TabPanel>
@@ -199,8 +198,8 @@ export default function Users() {
             rows={wonDeals}
             columns={columns}
             isLoading={wonDealsLoading}
-            navigateTo="Coming soon"
-            heading="Won deals"
+            navigateTo='Coming soon'
+            heading='Won deals'
             xs={4}
           />
         </TabPanel>
@@ -210,8 +209,8 @@ export default function Users() {
             rows={lostDeals}
             columns={columns}
             isLoading={lostDealsLoading}
-            navigateTo="Coming soon"
-            heading="Won deals"
+            navigateTo='Coming soon'
+            heading='Won deals'
             xs={4}
           />
         </TabPanel>
@@ -244,7 +243,7 @@ export default function Users() {
       >
         <SpeedDial
           sx={{ position: "absolute", bottom: 16, right: 16 }}
-          ariaLabel="SpeedDial basic example"
+          ariaLabel='SpeedDial basic example'
           icon={<SpeedDialIcon />}
         >
           {actions.map((action) => (
@@ -271,7 +270,7 @@ export default function Users() {
             paddingTop: "50px",
           },
         }}
-        anchor="right"
+        anchor='right'
         open={selectedAction !== null}
         onClose={() => setSelectedAction(null)}
       >
