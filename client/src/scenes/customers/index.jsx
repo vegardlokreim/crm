@@ -25,10 +25,6 @@ export default function Customer() {
 
   const actions = [{ icon: <PostAddOutlined />, name: "Add new customer" }];
 
-  useEffect(() => {
-    console.log(selectedRowIds);
-  }, [selectedRowIds]);
-
   const navigate = useNavigate();
   const { data, isLoading } = useGetCustomersQuery();
 

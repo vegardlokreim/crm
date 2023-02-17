@@ -308,7 +308,7 @@ export default function CustomerOverview() {
             rows={contacts}
             columns={contactsColumns}
             isLoading={isLoading}
-            navigateTo="Coming soon"
+            navigateTo="/contact/"
             heading="Contacts"
             xs={6}
           />
