@@ -1,10 +1,10 @@
 import express from "express";
-import { getTasks, createTask, setUser, getTasksByUserId } from "../controllers/task.js";
+import { getTasks, createTask, setUser, getTasksByCompanyId } from "../controllers/task.js";
 
 const router = express.Router();
 
 router.get("/", getTasks);
-router.get("/getTasksByUserId/:id", getTasksByUserId);
+router.get("/getTasksByCompanyId/:id", getTasksByCompanyId);
 
 
 router.post("/createTask", createTask);

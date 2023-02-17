@@ -18,7 +18,7 @@ export const getTask = async (req, res) => {
     }
 }
 
-export const getTasksByUserId = async (req, res) => {
+export const getTasksByCompanyId = async (req, res) => {
     try {
         const tasks = await Task.find({ companyId: req.params.id }).populate("user");
         res.status(200).json(tasks);

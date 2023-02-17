@@ -54,7 +54,7 @@ export default function CustomerOverview() {
   const [deals, setDeals] = useState([]);
   useEffect(() => {
     const fetchTasks = async () => {
-      const getTasksUrl = `${process.env.REACT_APP_BASE_URL}/task/getTasksByUserId/${id}`;
+      const getTasksUrl = `${process.env.REACT_APP_BASE_URL}/task/getTasksByCompanyId/${id}`;
       const tasks = await axios.get(getTasksUrl);
 
       const getDealsUrl = `http://localhost:9000/deal/getDealsByCompanyId/${id}`;
