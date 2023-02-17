@@ -4,6 +4,7 @@ import { Box, Grid, Typography, useTheme, Drawer } from "@mui/material";
 import {
   useGetContactsFromCustomerQuery,
   useGetCustomerQuery,
+  useGetDealsByUserIdQuery,
   useGetUserQuery,
 } from "state/api";
 import Header from "components/Header";
@@ -49,20 +50,12 @@ export default function UserOverview() {
   const [selectedAction, setSelectedAction] = useState(null);
   const [tasks, setTasks] = useState([]);
   const { data, isLoading } = useGetUserQuery(id);
+  const { data: deals, dealsIsLoading } = useGetDealsByUserIdQuery(id);
 
-  // Deals:
-  const [deals, setDeals] = useState([]);
   useEffect(() => {
     const fetchTasks = async () => {
       const getTasksUrl = `${process.env.REACT_APP_BASE_URL}/task/getTasksByUserId/${id}`;
       const tasks = await axios.get(getTasksUrl);
-
-      const getDealsUrl = `http://localhost:9000/deal/getDealsByCompanyId/${id}`;
-      const deals = await axios.get(
-        `http://localhost:9000/deal/getDealsByCompanyId/${id}`
-      );
-
-      setDeals(deals.data);
 
       setTasks(tasks.data);
     };
@@ -197,11 +190,7 @@ export default function UserOverview() {
         aria-labelledby={`simple-tab-${index}`}
         {...other}
       >
-        {value === index && (
-          <Box sx={{ p: 3 }}>
-            <Typography>{children}</Typography>
-          </Box>
-        )}
+        {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
       </div>
     );
   }
@@ -232,17 +221,17 @@ export default function UserOverview() {
 
   // const totalLost = deals.filter((deal) => deal.status === "lost").length;
 
-  const totalWon = deals
-    .filter((deal) => deal.status === "won")
-    .reduce((acc, deal) => acc + deal.price, 0);
+  // const totalWon = deals
+  //   .filter((deal) => deal.status === "won")
+  //   .reduce((acc, deal) => acc + deal.price, 0);
 
-  const totalPending = deals
-    .filter((deal) => deal.status === "pending")
-    .reduce((acc, deal) => acc + deal.price, 0);
+  // const totalPending = deals
+  //   .filter((deal) => deal.status === "pending")
+  //   .reduce((acc, deal) => acc + deal.price, 0);
 
-  const totalLost = deals
-    .filter((deal) => deal.status === "lost")
-    .reduce((acc, deal) => acc + deal.price, 0);
+  // const totalLost = deals
+  //   .filter((deal) => deal.status === "lost")
+  //   .reduce((acc, deal) => acc + deal.price, 0);
 
   return (
     <Box id="hideBottomTableRow" m="1.5rem 2.5rem">
@@ -279,7 +268,7 @@ export default function UserOverview() {
             rows={tasks}
             columns={taskColumns}
             isLoading={false}
-            navigateTo="Coming soon"
+            navigateTo={""}
             heading="Tasks"
             xs={4}
           />
@@ -290,8 +279,8 @@ export default function UserOverview() {
             rows={deals}
             columns={dealsColumns}
             isLoading={isLoading}
-            navigateTo="Coming soon"
-            heading="Recurring Payments"
+            navigateTo="/deal/"
+            heading="Deals"
             xs={6}
           />
         </TabPanel>

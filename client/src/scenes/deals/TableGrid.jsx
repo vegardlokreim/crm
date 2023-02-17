@@ -1,13 +1,24 @@
 import { useTheme } from "@emotion/react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Drawer, Grid, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ShowDeal from "./ShowDeal";
 
-const TableGrid = ({ rows, columns, isLoading, navigateTo, heading, xs }) => {
+const TableGrid = ({
+  rows,
+  columns,
+  isLoading,
+  navigateTo,
+  heading,
+  xs,
+  refetch,
+}) => {
   const navigate = useNavigate();
   const theme = useTheme();
   const [checkboxSelection, setCheckboxSelection] = useState(true);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [dealId, setDealId] = useState("");
 
   return (
     <Grid item xs={xs}>
@@ -65,10 +76,33 @@ const TableGrid = ({ rows, columns, isLoading, navigateTo, heading, xs }) => {
           disableSelectionOnClick
           onClick={() => setCheckboxSelection(!checkboxSelection)}
           onRowDoubleClick={(row) => {
-            navigate(`${navigateTo}${row.id}`);
+            setDealId(row.id);
+            //navigateTo(row._id);
+            setIsDrawerOpen(true);
           }}
         />
       </Box>
+      <Drawer
+        sx={{
+          width: 400,
+          "& .MuiDrawer-paper": {
+            color: theme.palette.secondary[200],
+            backgroundColor: theme.palette.background.alt,
+            boxSixing: "border-box",
+            width: 400,
+            padding: "20px",
+            paddingTop: "50px",
+          },
+        }}
+        anchor="right"
+        open={isDrawerOpen}
+        onClose={() => {
+          setDealId("");
+          setIsDrawerOpen(false);
+        }}
+      >
+        <ShowDeal refetch={refetch} id={dealId} closeDrawer={setIsDrawerOpen} />
+      </Drawer>
     </Grid>
   );
 };

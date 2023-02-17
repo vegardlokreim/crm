@@ -97,6 +97,15 @@ export const api = createApi({
       }),
       providesTags: ["Deals"],
     }),
+    getDealsByUserId: build.query({
+      query: (id) => `deal/getDealsByUserId/${id}`,
+      providesTags: ["Deals"],
+    }),
+    getDealById: build.query({
+      query: (id) => `deal/${id}`,
+      // TODO: change this to getUserById route in API
+      providesTags: ["Deals"],
+    }),
   }),
 });
 
@@ -118,4 +127,6 @@ export const {
   useGetDealsByStatusQuery,
   useCreateDealQuery,
   useGetTasksQuery,
+  useGetDealsByUserIdQuery,
+  useGetDealByIdQuery,
 } = api;

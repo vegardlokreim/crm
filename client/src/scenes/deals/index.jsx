@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Drawer,
@@ -7,39 +7,38 @@ import {
   SpeedDialIcon,
   Tab,
   Tabs,
-  Typography,
   useTheme,
 } from "@mui/material";
-import {
-  useGetDealsByStatusQuery,
-  useGetDealsQuery,
-  useGetPendingDealsQuery,
-} from "state/api";
+import { useGetDealsByStatusQuery, useGetDealsQuery } from "state/api";
 import Header from "components/Header";
-import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
-import TableGrid from "components/TableGrid";
+import TableGrid from "./TableGrid";
 import PropTypes from "prop-types";
-import {
-  ApartmentOutlined,
-  PaidOutlined,
-  PermIdentityOutlined,
-  PostAddOutlined,
-} from "@mui/icons-material";
+import { PostAddOutlined } from "@mui/icons-material";
 import CreateDeal from "./CreateDeal";
 
-export default function Users() {
+export default function Deals() {
   const theme = useTheme();
   const [checkboxSelection, setCheckboxSelection] = useState(true);
 
+  const [dealsAdded, setDealsAdded] = useState(0);
+
   const navigate = useNavigate();
-  const { data: allDeals, isLoading: allDealsLoading } = useGetDealsQuery();
+  const {
+    data: allDeals,
+    isLoading: allDealsLoading,
+    refetch: refetchAllDeals,
+  } = useGetDealsQuery();
   const { data: pendingDeals, isLoading: pendingDealsLoading } =
     useGetDealsByStatusQuery("pending");
   const { data: wonDeals, isLoading: wonDealsLoading } =
     useGetDealsByStatusQuery("won");
   const { data: lostDeals, isLoading: lostDealsLoading } =
     useGetDealsByStatusQuery("lost");
+
+  useEffect(() => {
+    refetchAllDeals();
+  }, [dealsAdded]);
 
   const [selectedAction, setSelectedAction] = useState(null);
 
@@ -121,7 +120,7 @@ export default function Users() {
     const { children, value, index, ...other } = props;
     return (
       <div
-        role='tabpanel'
+        role="tabpanel"
         hidden={value !== index}
         id={`simple-tabpanel-${index}`}
         aria-labelledby={`simple-tab-${index}`}
@@ -152,8 +151,8 @@ export default function Users() {
   };
 
   return (
-    <Box id='hideBottomTableRow' m='1.5rem 2.5rem'>
-      <Header sx={{}} title='DEALS' subtitle='all them deals' />
+    <Box id="hideBottomTableRow" m="1.5rem 2.5rem">
+      <Header sx={{}} title="DEALS" subtitle="all them deals" />
 
       {/* Tabs */}
       <Box sx={{ width: "100%", mt: "30px" }}>
@@ -161,12 +160,12 @@ export default function Users() {
           <Tabs
             value={value}
             onChange={handleChange}
-            aria-label='basic tabs example'
+            aria-label="basic tabs example"
           >
-            <Tab label='All deals' {...a11yProps(0)} />
-            <Tab label='Pending' {...a11yProps(1)} />
-            <Tab label='Won' {...a11yProps(2)} />
-            <Tab label='Lost' {...a11yProps(3)} />
+            <Tab label="All deals" {...a11yProps(0)} />
+            <Tab label="Pending" {...a11yProps(1)} />
+            <Tab label="Won" {...a11yProps(2)} />
+            <Tab label="Lost" {...a11yProps(3)} />
           </Tabs>
         </Box>
 
@@ -174,10 +173,11 @@ export default function Users() {
         <TabPanel value={value} index={0}>
           <TableGrid
             rows={allDeals}
+            refetch={refetchAllDeals}
             columns={columns}
             isLoading={allDealsLoading}
-            navigateTo='Coming soon'
-            heading='All deals'
+            navigateTo="/deal/"
+            heading="All deals"
             xs={4}
           />
         </TabPanel>
@@ -187,8 +187,8 @@ export default function Users() {
             rows={pendingDeals}
             columns={columns}
             isLoading={pendingDealsLoading}
-            navigateTo='Coming soon'
-            heading='Pending deals'
+            navigateTo="/deal/"
+            heading="Pending deals"
             xs={4}
           />
         </TabPanel>
@@ -198,8 +198,8 @@ export default function Users() {
             rows={wonDeals}
             columns={columns}
             isLoading={wonDealsLoading}
-            navigateTo='Coming soon'
-            heading='Won deals'
+            navigateTo="/deal/"
+            heading="Won deals"
             xs={4}
           />
         </TabPanel>
@@ -209,8 +209,8 @@ export default function Users() {
             rows={lostDeals}
             columns={columns}
             isLoading={lostDealsLoading}
-            navigateTo='Coming soon'
-            heading='Won deals'
+            navigateTo="/deal/"
+            heading="Won deals"
             xs={4}
           />
         </TabPanel>
@@ -243,7 +243,7 @@ export default function Users() {
       >
         <SpeedDial
           sx={{ position: "absolute", bottom: 16, right: 16 }}
-          ariaLabel='SpeedDial basic example'
+          ariaLabel="SpeedDial basic example"
           icon={<SpeedDialIcon />}
         >
           {actions.map((action) => (
@@ -270,14 +270,19 @@ export default function Users() {
             paddingTop: "50px",
           },
         }}
-        anchor='right'
+        anchor="right"
         open={selectedAction !== null}
         onClose={() => setSelectedAction(null)}
       >
         {(() => {
           switch (selectedAction) {
             case "Create deal":
-              return <CreateDeal closeDrawer={setSelectedAction} />;
+              return (
+                <CreateDeal
+                  closeDrawer={setSelectedAction}
+                  refetchDeals={refetchAllDeals}
+                />
+              );
             case "Edit contacts":
               return "Edit contacts";
             case "Edit recurring payments":

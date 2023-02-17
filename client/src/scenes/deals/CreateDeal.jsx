@@ -16,7 +16,7 @@ import {
   useGetUsersQuery,
 } from "state/api";
 
-const CreateDeal = ({ closeDrawer }) => {
+const CreateDeal = ({ closeDrawer, refetchDeals }) => {
   const [selectedUser, setSelectedUser] = useState("");
   const [selectedCustomer, setSelectedCustomer] = useState("");
   const [price, setPrice] = useState("");
@@ -49,8 +49,8 @@ const CreateDeal = ({ closeDrawer }) => {
         status: status,
       }
     );
+    refetchDeals();
     closeDrawer(null);
-    console.log(response);
   };
   return (
     <>

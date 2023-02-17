@@ -22,6 +22,7 @@ import Tasks from "scenes/tasks";
 import Tickets from "scenes/tickets";
 import UserOverview from "scenes/users/[id]";
 import Deals from "scenes/deals";
+import DealOverview from "scenes/deals/[id]";
 
 
 
@@ -47,6 +48,7 @@ function App() {
               <Route path="/tasks" element={<Tasks />} />
               <Route path="/tickets" element={<Tickets />} />
               <Route path="/deals" element={<Deals />} />
+              <Route path="/deal/:id" element={<DealOverview />} />
 
 
               {/* <Route path="/overview" element={<Overview />} />

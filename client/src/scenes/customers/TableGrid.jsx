@@ -20,7 +20,7 @@ const TableGrid = ({ rows, columns, isLoading, navigateTo, heading, xs }) => {
         }}
       ></Box>
       <Box
-        mt="40px"
+        mt=""
         height="50vh"
         sx={{
           "& .MuiDataGrid-root": {
@@ -65,7 +65,7 @@ const TableGrid = ({ rows, columns, isLoading, navigateTo, heading, xs }) => {
           disableSelectionOnClick
           onClick={() => setCheckboxSelection(!checkboxSelection)}
           onRowDoubleClick={(row) => {
-            navigate(navigateTo);
+            navigate(`${navigateTo}${row}`);
           }}
         />
       </Box>

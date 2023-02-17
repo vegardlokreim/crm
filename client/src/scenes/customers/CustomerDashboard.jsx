@@ -88,7 +88,7 @@ const CustomerDashboard = ({
             rows={deals}
             columns={dealsColumns}
             isLoading={isLoading}
-            navigateTo="Coming soon"
+            navigateTo="/deal/"
             heading="Deals"
             xs={6}
           />

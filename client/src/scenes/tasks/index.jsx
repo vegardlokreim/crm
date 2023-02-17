@@ -125,7 +125,7 @@ export default function Tasks() {
     const { children, value, index, ...other } = props;
     return (
       <div
-        role='tabpanel'
+        role="tabpanel"
         hidden={value !== index}
         id={`simple-tabpanel-${index}`}
         aria-labelledby={`simple-tab-${index}`}
@@ -159,8 +159,8 @@ export default function Tasks() {
   };
 
   return (
-    <Box id='hideBottomTableRow' m='1.5rem 2.5rem'>
-      <Header sx={{}} title='TASKS' subtitle='all them tasks' />
+    <Box id="hideBottomTableRow" m="1.5rem 2.5rem">
+      <Header sx={{}} title="TASKS" subtitle="all them tasks" />
 
       {/* Tabs */}
       <Box sx={{ width: "100%", mt: "30px" }}>
@@ -168,12 +168,12 @@ export default function Tasks() {
           <Tabs
             value={value}
             onChange={handleChange}
-            aria-label='basic tabs example'
+            aria-label="basic tabs example"
           >
-            <Tab label='All deals' {...a11yProps(0)} />
-            <Tab label='Pending' {...a11yProps(1)} />
-            <Tab label='Won' {...a11yProps(2)} />
-            <Tab label='Lost' {...a11yProps(3)} />
+            <Tab label="All deals" {...a11yProps(0)} />
+            <Tab label="Pending" {...a11yProps(1)} />
+            <Tab label="Won" {...a11yProps(2)} />
+            <Tab label="Lost" {...a11yProps(3)} />
           </Tabs>
         </Box>
 
@@ -183,8 +183,8 @@ export default function Tasks() {
             rows={allTasks}
             columns={columns}
             isLoading={allTasksLoading}
-            navigateTo='Coming soon'
-            heading='All deals'
+            navigateTo="/task/"
+            heading="All tasks"
             xs={4}
           />
         </TabPanel>
@@ -194,8 +194,8 @@ export default function Tasks() {
             rows={pendingDeals}
             columns={columns}
             isLoading={pendingDealsLoading}
-            navigateTo='Coming soon'
-            heading='Pending deals'
+            navigateTo="/task/"
+            heading="Pending deals"
             xs={4}
           />
         </TabPanel>
@@ -205,8 +205,8 @@ export default function Tasks() {
             rows={wonDeals}
             columns={columns}
             isLoading={wonDealsLoading}
-            navigateTo='Coming soon'
-            heading='Won deals'
+            navigateTo="Coming soon"
+            heading="Won deals"
             xs={4}
           />
         </TabPanel>
@@ -216,8 +216,8 @@ export default function Tasks() {
             rows={lostDeals}
             columns={columns}
             isLoading={lostDealsLoading}
-            navigateTo='Coming soon'
-            heading='Won deals'
+            navigateTo="/deal/"
+            heading="Won deals"
             xs={4}
           />
         </TabPanel>
@@ -250,7 +250,7 @@ export default function Tasks() {
       >
         <SpeedDial
           sx={{ position: "absolute", bottom: 16, right: 16 }}
-          ariaLabel='SpeedDial basic example'
+          ariaLabel="SpeedDial basic example"
           icon={<SpeedDialIcon />}
         >
           {actions.map((action) => (
@@ -277,7 +277,7 @@ export default function Tasks() {
             paddingTop: "50px",
           },
         }}
-        anchor='right'
+        anchor="right"
         open={selectedAction !== null}
         onClose={() => setSelectedAction(null)}
       >

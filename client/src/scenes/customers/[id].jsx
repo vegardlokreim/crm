@@ -233,23 +233,23 @@ export default function CustomerOverview() {
   };
 
   //Total Count
-  // const totalWon = deals.filter((deal) => deal.status === "won").length;
+  const totalWon = deals.filter((deal) => deal.status === "won").length;
 
-  // const totalPending = deals.filter((deal) => deal.status === "pending").length;
+  const totalPending = deals.filter((deal) => deal.status === "pending").length;
 
-  // const totalLost = deals.filter((deal) => deal.status === "lost").length;
+  const totalLost = deals.filter((deal) => deal.status === "lost").length;
 
-  const totalWon = deals
-    .filter((deal) => deal.status === "won")
-    .reduce((acc, deal) => acc + deal.price, 0);
+  // const totalWon = deals
+  //   .filter((deal) => deal.status === "won")
+  //   .reduce((acc, deal) => acc + deal.price, 0);
 
-  const totalPending = deals
-    .filter((deal) => deal.status === "pending")
-    .reduce((acc, deal) => acc + deal.price, 0);
+  // const totalPending = deals
+  //   .filter((deal) => deal.status === "pending")
+  //   .reduce((acc, deal) => acc + deal.price, 0);
 
-  const totalLost = deals
-    .filter((deal) => deal.status === "lost")
-    .reduce((acc, deal) => acc + deal.price, 0);
+  // const totalLost = deals
+  //   .filter((deal) => deal.status === "lost")
+  //   .reduce((acc, deal) => acc + deal.price, 0);
 
   return (
     <Box id="hideBottomTableRow" m="1.5rem 2.5rem">
@@ -291,7 +291,7 @@ export default function CustomerOverview() {
             rows={tasks}
             columns={taskColumns}
             isLoading={false}
-            navigateTo="Coming soon"
+            navigateTo="/task/"
             heading="Tasks"
             xs={4}
           />
@@ -302,7 +302,7 @@ export default function CustomerOverview() {
             rows={deals}
             columns={dealsColumns}
             isLoading={isLoading}
-            navigateTo="Coming soon"
+            navigateTo="/deal/"
             heading="Deals"
             xs={6}
           />
