@@ -6,6 +6,7 @@ import {
   SpeedDial,
   SpeedDialAction,
   SpeedDialIcon,
+  Button,
 } from "@mui/material";
 import { useGetCustomersQuery } from "state/api";
 import Header from "components/Header";
@@ -13,6 +14,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 import { PostAddOutlined } from "@mui/icons-material";
 import CreateCustomer from "./CreateCustomer";
+import FlexBetween from "components/FlexBetween";
 
 export default function Customer() {
   const theme = useTheme();
@@ -146,7 +148,13 @@ export default function Customer() {
 
   return (
     <Box m="1.5rem 2.5rem">
-      <Header title="CUSTOMERS" subtitle="List of Customers" />
+      <FlexBetween>
+        <Header title="CUSTOMERS" subtitle="List of Customers" />
+        {selectedRowIds.length > 0 && (
+          <Button variant="contained">Send mail</Button>
+        )}
+      </FlexBetween>
+
       <Box
         mt="40px"
         height="75vh"
@@ -175,19 +183,6 @@ export default function Customer() {
           },
         }}
       >
-        {/* <DataGrid
-          loading={isLoading || !data}
-          getRowId={(row) => row._id}
-          rows={data || []}
-          columns={columns}
-          checkboxSelection={checkboxSelection}
-          {...data}
-          disableSelectionOnClick
-          onClick={() => setCheckboxSelection(!checkboxSelection)}
-          onRowDoubleClick={(row) => {
-            navigate(`/customer/${row.id}`);
-          }}
-        /> */}
         <DataGrid
           loading={isLoading || !data}
           getRowId={(row) => row._id}

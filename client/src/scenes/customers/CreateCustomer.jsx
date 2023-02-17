@@ -29,35 +29,34 @@ const CreateCustomer = ({ closeDrawer }) => {
       }
     );
     closeDrawer(null);
-    console.log(response);
   };
 
   return (
     <>
-      <Typography sx={{ mb: "20px" }} variant='h2' gutterBottom>
+      <Typography sx={{ mb: "20px" }} variant="h2" gutterBottom>
         Create Customer
       </Typography>
 
       <TextField
-        id='outlined-basic'
-        label='Name'
-        variant='outlined'
+        id="outlined-basic"
+        label="Name"
+        variant="outlined"
         value={name}
         onChange={(event) => setName(event.target.value)}
         sx={{ width: "100%", mb: "20px" }}
       />
       <TextField
-        id='outlined-basic'
-        label='Organization number'
-        variant='outlined'
+        id="outlined-basic"
+        label="Organization number"
+        variant="outlined"
         value={organizationNumber}
         onChange={(event) => setOrganizationNumber(event.target.value)}
         sx={{ width: "100%", mb: "20px" }}
       />
       <TextField
-        id='outlined-basic'
-        label='Customer number'
-        variant='outlined'
+        id="outlined-basic"
+        label="Customer number"
+        variant="outlined"
         value={customerNumber}
         onChange={(event) => setCustomerNumber(event.target.value)}
         sx={{ width: "100%", mb: "20px" }}
@@ -65,7 +64,7 @@ const CreateCustomer = ({ closeDrawer }) => {
       <Button
         sx={{ width: "25%", mb: "20px" }}
         onClick={handleCreateCustomer}
-        variant='contained'
+        variant="contained"
       >
         Create customer
       </Button>

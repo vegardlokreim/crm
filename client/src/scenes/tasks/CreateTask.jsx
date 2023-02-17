@@ -48,48 +48,47 @@ const CreateTask = ({ closeDrawer }) => {
       }
     );
     closeDrawer(null);
-    console.log(response);
   };
   return (
     <>
-      <Typography sx={{ mb: "20px" }} variant='h2' gutterBottom>
+      <Typography sx={{ mb: "20px" }} variant="h2" gutterBottom>
         Create task
       </Typography>
 
       <ComboBox
-        label='Select user'
+        label="Select user"
         options={userOptions}
         setSelectedOption={setSelectedUser}
-        marginBottom='20px'
+        marginBottom="20px"
       />
       <ComboBox
-        label='Select customer'
+        label="Select customer"
         options={customerOptions}
         setSelectedOption={setSelectedCustomer}
-        marginBottom='20px'
+        marginBottom="20px"
       />
       <ComboBox
-        label='Status'
+        label="Status"
         options={[
           { label: "Pending", value: "pending" },
           { label: "Done", value: "done" },
           { label: "Active", value: "active" },
         ]}
         setSelectedOption={setStatus}
-        marginBottom='20px'
+        marginBottom="20px"
       />
       <TextField
-        id='outlined-basic'
-        label='Title'
-        variant='outlined'
+        id="outlined-basic"
+        label="Title"
+        variant="outlined"
         value={title}
         onChange={(event) => setTitle(event.target.value)}
         sx={{ width: "100%", mb: "20px" }}
       />
       <TextField
-        id='outlined-basic'
-        label='Description'
-        variant='outlined'
+        id="outlined-basic"
+        label="Description"
+        variant="outlined"
         multiline
         rows={4}
         value={description}
@@ -99,7 +98,7 @@ const CreateTask = ({ closeDrawer }) => {
       <Button
         sx={{ width: "25%", mb: "20px" }}
         onClick={handleCreateTask}
-        variant='contained'
+        variant="contained"
       >
         Create task
       </Button>

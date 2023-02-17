@@ -4,6 +4,8 @@ import { Box, Grid, Typography, useTheme, Drawer } from "@mui/material";
 import {
   useGetContactsFromCustomerQuery,
   useGetCustomerQuery,
+  useGetDealsByCompanyIdQuery,
+  useGetTasksByCustomerIdQuery,
 } from "state/api";
 import Header from "components/Header";
 import { DataGrid } from "@mui/x-data-grid";
@@ -47,28 +49,19 @@ export default function CustomerOverview() {
   const navigate = useNavigate();
   const [checkboxSelection, setCheckboxSelection] = useState(true);
   const [selectedAction, setSelectedAction] = useState(null);
-  const [tasks, setTasks] = useState([]);
+
   const { data, isLoading } = useGetCustomerQuery(id);
+  const {
+    data: tasks,
+    isLoading: isTasksLoading,
+    refetch: refetchTasks,
+  } = useGetTasksByCustomerIdQuery(id);
 
-  // Deals:
-  const [deals, setDeals] = useState([]);
-  useEffect(() => {
-    const fetchTasks = async () => {
-      const getTasksUrl = `${process.env.REACT_APP_BASE_URL}/task/getTasksByCompanyId/${id}`;
-      const tasks = await axios.get(getTasksUrl);
-
-      const getDealsUrl = `http://localhost:9000/deal/getDealsByCompanyId/${id}`;
-      const deals = await axios.get(
-        `http://localhost:9000/deal/getDealsByCompanyId/${id}`
-      );
-
-      setDeals(deals.data);
-
-      setTasks(tasks.data);
-    };
-
-    fetchTasks();
-  }, [id]);
+  const {
+    data: deals,
+    isLoading: isDealsLoading,
+    refetch: refetchDeals,
+  } = useGetDealsByCompanyIdQuery(id);
 
   const contacts = data?.contacts.map((contact) => {
     return {
@@ -233,11 +226,13 @@ export default function CustomerOverview() {
   };
 
   //Total Count
-  const totalWon = deals.filter((deal) => deal.status === "won").length;
+  const totalWon = deals?.filter((deal) => deal.status === "won").length;
 
-  const totalPending = deals.filter((deal) => deal.status === "pending").length;
+  const totalPending = deals?.filter(
+    (deal) => deal.status === "pending"
+  ).length;
 
-  const totalLost = deals.filter((deal) => deal.status === "lost").length;
+  const totalLost = deals?.filter((deal) => deal.status === "lost").length;
 
   // const totalWon = deals
   //   .filter((deal) => deal.status === "won")

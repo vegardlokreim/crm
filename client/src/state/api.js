@@ -77,18 +77,28 @@ export const api = createApi({
       }),
       providesTags: ["Users"],
     }),
-    getDeals: build.query({
-      query: () => `deal`,
-      providesTags: ["Deals"],
-    }),
-    getDealsByStatus: build.query({
-      query: (status) => `deal/getDealsByStatus/${status}`,
-      providesTags: ["Deals"],
-    }),
+
+
+
+
+
+
     getTasks: build.query({
       query: () => `task`,
       providesTags: ["Deals"],
     }),
+    getTasksByCustomerId: build.query({
+      query: (id) => `task/getTasksByCompanyId/${id}`,
+      providesTags: ["Tasks"],
+    }),
+
+
+
+
+
+
+
+
     createDeal: build.query({
       query: (data) => ({
         url: "deal/createDeal",
@@ -97,8 +107,20 @@ export const api = createApi({
       }),
       providesTags: ["Deals"],
     }),
+    getDeals: build.query({
+      query: () => `deal`,
+      providesTags: ["Deals"],
+    }),
+    getDealsByStatus: build.query({
+      query: (status) => `deal/getDealsByStatus/${status}`,
+      providesTags: ["Deals"],
+    }),
     getDealsByUserId: build.query({
       query: (id) => `deal/getDealsByUserId/${id}`,
+      providesTags: ["Deals"],
+    }),
+    getDealsByCompanyId: build.query({
+      query: (id) => `deal/getDealsByCompanyId/${id}`,
       providesTags: ["Deals"],
     }),
     getDealById: build.query({
@@ -127,6 +149,8 @@ export const {
   useGetDealsByStatusQuery,
   useCreateDealQuery,
   useGetTasksQuery,
+  useGetTasksByCustomerIdQuery,
   useGetDealsByUserIdQuery,
+  useGetDealsByCompanyIdQuery,
   useGetDealByIdQuery,
 } = api;

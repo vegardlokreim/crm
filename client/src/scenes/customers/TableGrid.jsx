@@ -65,7 +65,7 @@ const TableGrid = ({ rows, columns, isLoading, navigateTo, heading, xs }) => {
           disableSelectionOnClick
           onClick={() => setCheckboxSelection(!checkboxSelection)}
           onRowDoubleClick={(row) => {
-            navigate(`${navigateTo}${row}`);
+            navigate(`${navigateTo}${row.id}`);
           }}
         />
       </Box>
