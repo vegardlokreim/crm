@@ -26,27 +26,20 @@ const ShowDeal = ({ id, closeDrawer, setDealsAdded, dealsAdded, refetch }) => {
   }, [id]);
 
   const handleClick = async () => {
-    const response = await axios.put(
-      `http://localhost:9000/deal/updateDeal/${id}`,
-      {
-        title: title,
-        description: description,
-        price: price,
-        status: status,
-        userId: userId,
-      }
-    );
+    const response = await axios.put(`http://localhost:9000/deal/updateDeal/${id}`, {
+      title: title,
+      description: description,
+      price: price,
+      status: status,
+      userId: userId,
+    });
     refetch();
     closeDrawer(false);
   };
 
   return (
     <Box>
-      <Typography
-        variant="h3"
-        component="h2"
-        sx={{ width: "100%", mb: "40px" }}
-      >
+      <Typography variant="h3" component="h2" sx={{ width: "100%", mb: "40px" }}>
         Update deal
       </Typography>
       <Button
@@ -60,12 +53,7 @@ const ShowDeal = ({ id, closeDrawer, setDealsAdded, dealsAdded, refetch }) => {
         {isEditable ? "Cancel" : "Edit"}
       </Button>
 
-      <TextField
-        disabled={!isEditable}
-        sx={{ width: "100%", mb: "20px" }}
-        label="Deal ID"
-        value={id}
-      />
+      <TextField disabled={!isEditable} sx={{ width: "100%", mb: "20px" }} label="Deal ID" value={id} />
       <TextField
         disabled={!isEditable}
         sx={{ width: "100%", mb: "20px" }}
@@ -104,12 +92,7 @@ const ShowDeal = ({ id, closeDrawer, setDealsAdded, dealsAdded, refetch }) => {
         onChange={(event) => setUserName(event.target.value)}
       />
       {isEditable ? (
-        <Button
-          sx={{ mb: "40px" }}
-          color="primary"
-          variant="contained"
-          onClick={handleClick}
-        >
+        <Button sx={{ mb: "40px" }} color="primary" variant="contained" onClick={handleClick}>
           Submit
         </Button>
       ) : (

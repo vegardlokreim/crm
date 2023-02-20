@@ -1,5 +1,5 @@
 import { useTheme } from "@emotion/react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Drawer, Grid, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,8 @@ const TableGrid = ({ rows, columns, isLoading, navigateTo, heading, xs }) => {
   const navigate = useNavigate();
   const theme = useTheme();
   const [checkboxSelection, setCheckboxSelection] = useState(true);
+  const [indexForInfoDrawer, setIndexForInfoDrawer] = useState(null);
+  const [rowId, setRowId] = useState(null);
 
   return (
     <Grid item xs={xs}>
@@ -21,7 +23,7 @@ const TableGrid = ({ rows, columns, isLoading, navigateTo, heading, xs }) => {
       ></Box>
       <Box
         mt=""
-        height="60vh"
+        height="50vh"
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -47,12 +49,7 @@ const TableGrid = ({ rows, columns, isLoading, navigateTo, heading, xs }) => {
           },
         }}
       >
-        <Typography
-          variant="h4"
-          color={theme.palette.secondary[100]}
-          fontWeight="bold"
-          sx={{ mb: "20px" }}
-        >
+        <Typography variant="h4" color={theme.palette.secondary[100]} fontWeight="bold" sx={{ mb: "20px" }}>
           {heading}
         </Typography>
         <DataGrid
@@ -65,10 +62,44 @@ const TableGrid = ({ rows, columns, isLoading, navigateTo, heading, xs }) => {
           disableSelectionOnClick
           onClick={() => setCheckboxSelection(!checkboxSelection)}
           onRowDoubleClick={(row) => {
-            navigate(`${navigateTo}${row.id}`);
+            setIndexForInfoDrawer(navigateTo);
+            setRowId(row.id);
           }}
         />
       </Box>
+      <Drawer
+        sx={{
+          width: 500,
+          "& .MuiDrawer-paper": {
+            color: theme.palette.secondary[200],
+            backgroundColor: theme.palette.background.alt,
+            boxSixing: "border-box",
+            width: 500,
+            padding: "20px",
+            paddingTop: "50px",
+          },
+        }}
+        anchor="right"
+        open={indexForInfoDrawer !== null}
+        onClose={() => {
+          setIndexForInfoDrawer(null);
+        }}
+      >
+        {(() => {
+          switch (indexForInfoDrawer) {
+            case "/deal/":
+              navigate(`${navigateTo}${rowId}`);
+            case "/contact/":
+              return indexForInfoDrawer;
+            case "/task/":
+              return indexForInfoDrawer;
+            case "Edit customer":
+              return "<h1>Edit customer</h1>";
+            default:
+              return null;
+          }
+        })()}
+      </Drawer>
     </Grid>
   );
 };

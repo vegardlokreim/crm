@@ -1,7 +1,7 @@
 import { Button, Typography } from "@mui/material";
 import axios from "axios";
+import ComboBox from "components/ComboBox";
 import React, { useEffect, useState } from "react";
-import ComboBox from "./ComboBox";
 
 const AddContact = ({ id, closeDrawer }) => {
   const [contacts, setContacts] = useState([]);

@@ -1,13 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {
-  Box,
-  useTheme,
-  Drawer,
-  SpeedDial,
-  SpeedDialAction,
-  SpeedDialIcon,
-  Button,
-} from "@mui/material";
+import React, { useState } from "react";
+import { Box, useTheme, Drawer, SpeedDial, SpeedDialAction, SpeedDialIcon, Button } from "@mui/material";
 import { useGetCustomersQuery } from "state/api";
 import Header from "components/Header";
 import { DataGrid } from "@mui/x-data-grid";
@@ -15,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { PostAddOutlined } from "@mui/icons-material";
 import CreateCustomer from "./CreateCustomer";
 import FlexBetween from "components/FlexBetween";
+
+/* COLUMNS IMPORT */
+import { customerListColumns } from "columns/columns";
 
 export default function Customer() {
   const theme = useTheme();
@@ -28,129 +23,14 @@ export default function Customer() {
   const navigate = useNavigate();
   const { data, isLoading } = useGetCustomersQuery();
 
-  const columns = [
-    {
-      field: "customerId",
-      headerName: "ID",
-      flex: 0.5,
-    },
-    {
-      field: "organizationId",
-      headerName: "Organization ID",
-      flex: 0.8,
-    },
-    // {
-    //   field: "_id",
-    //   headerName: "MongoID",
-    //   flex: 1,
-    // },
-
-    {
-      field: "name",
-      headerName: "Name",
-      flex: 1,
-    },
-    {
-      field: "primaryContactName",
-      headerName: "Primary Contact",
-      flex: 1,
-      renderCell: (params) => {
-        try {
-          const { contacts } = params.row;
-          const primaryContact = contacts?.find((c) => c.role === "primary");
-
-          if (!primaryContact) {
-            return "N/A";
-          }
-
-          const { firstName, lastName } = primaryContact.contactId;
-          return `${firstName} ${lastName}`;
-        } catch (error) {
-          return "N/A";
-        }
-      },
-    },
-    {
-      field: "primaryContactEmail",
-      headerName: "Primary Contact Email",
-      flex: 1,
-      valueGetter: (params) => {
-        try {
-          const { contacts } = params.row;
-          const primaryContact = contacts?.find((c) => c.role === "primary");
-
-          if (!primaryContact) {
-            return "N/A";
-          }
-
-          const { email } = primaryContact.contactId;
-          return email;
-        } catch (error) {
-          return "N/A";
-        }
-      },
-      renderCell: (params) => {
-        const email = params.value;
-        return email ? email : "N/A";
-      },
-      filterOperators: [
-        {
-          label: "Contains",
-          value: "contains",
-          getApplyFilterFn: (filterItem) => (params) => {
-            const email = params.value.toLowerCase();
-            const filter = filterItem.value.toLowerCase();
-            return email.includes(filter);
-          },
-        },
-      ],
-    },
-    {
-      field: "primaryContactPhone",
-      headerName: "Primary Contact Phone",
-      flex: 1,
-      valueGetter: (params) => {
-        try {
-          const { contacts } = params.row;
-          const primaryContact = contacts?.find((c) => c.role === "primary");
-
-          if (!primaryContact) {
-            return "N/A";
-          }
-
-          const { phone } = primaryContact.contactId;
-          return phone;
-        } catch (error) {
-          return "N/A";
-        }
-      },
-      renderCell: (params) => {
-        const phone = params.value;
-        return phone ? phone : "N/A";
-      },
-      filterOperators: [
-        {
-          label: "Contains",
-          value: "contains",
-          getApplyFilterFn: (filterItem) => (params) => {
-            const phone = params.value.toLowerCase();
-            const filter = filterItem.value.toLowerCase();
-            return phone.includes(filter);
-          },
-        },
-      ],
-    },
-  ];
-
   return (
     <Box m="1.5rem 2.5rem">
       <FlexBetween>
         <Header title="CUSTOMERS" subtitle="List of Customers" />
-        {selectedRowIds.length > 0 && (
-          <Button variant="contained">Send mail</Button>
-        )}
+        {selectedRowIds.length > 0 && <Button variant="contained">Send mail</Button>}
       </FlexBetween>
 
+      {/* BOX WITH DATAGRID */}
       <Box
         mt="40px"
         height="75vh"
@@ -183,13 +63,11 @@ export default function Customer() {
           loading={isLoading || !data}
           getRowId={(row) => row._id}
           rows={data || []}
-          columns={columns}
+          columns={customerListColumns}
           checkboxSelection={checkboxSelection}
           disableSelectionOnClick
           onClick={() => setCheckboxSelection(!checkboxSelection)}
-          onSelectionModelChange={(newSelection) =>
-            setSelectedRowIds(newSelection)
-          }
+          onSelectionModelChange={(newSelection) => setSelectedRowIds(newSelection)}
           // pass in selected row IDs as the selectionModel prop
           selectionModel={selectedRowIds}
           onRowDoubleClick={(row) => {
@@ -197,6 +75,8 @@ export default function Customer() {
           }}
         />
       </Box>
+
+      {/* BOX WITH SPEED DIAL */}
       <Box
         sx={{
           height: 320,

@@ -1,28 +1,14 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Drawer,
-  SpeedDial,
-  SpeedDialAction,
-  SpeedDialIcon,
-  Tab,
-  Tabs,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Drawer, SpeedDial, SpeedDialAction, SpeedDialIcon, Tab, Tabs, Typography, useTheme } from "@mui/material";
 import { useGetUsersQuery } from "state/api";
 import Header from "components/Header";
 import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
-import TableGrid from "components/TableGrid";
-import PropTypes from "prop-types";
-import {
-  ApartmentOutlined,
-  PaidOutlined,
-  PermIdentityOutlined,
-  PostAddOutlined,
-} from "@mui/icons-material";
+import { PostAddOutlined } from "@mui/icons-material";
 import CreateUser from "./CreateUser";
+
+// COLUMN IMPORTS
+import { usersListColumns } from "columns/columns";
 
 export default function Users() {
   const theme = useTheme();
@@ -37,35 +23,12 @@ export default function Users() {
   const navigate = useNavigate();
   const { data, isLoading } = useGetUsersQuery();
 
-  const columns = [
-    {
-      field: "firstName",
-      headerName: "First Name",
-      flex: 0.5,
-    },
-    {
-      field: "lastName",
-      headerName: "Last Name",
-      flex: 0.8,
-    },
-    {
-      field: "email",
-      headerName: "Email",
-      flex: 1,
-    },
-    {
-      field: "phone",
-      headerName: "Phone",
-      flex: 1,
-    },
-  ];
-
   return (
-    <Box m='1.5rem 2.5rem'>
-      <Header title='USERS' subtitle='List of Customers' />
+    <Box m="1.5rem 2.5rem">
+      <Header title="USERS" subtitle="List of Customers" />
       <Box
-        mt='40px'
-        height='75vh'
+        mt="40px"
+        height="75vh"
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -95,7 +58,7 @@ export default function Users() {
           loading={isLoading || !data}
           getRowId={(row) => row._id}
           rows={data || []}
-          columns={columns}
+          columns={usersListColumns}
           checkboxSelection={checkboxSelection}
           {...data}
           disableSelectionOnClick
@@ -118,7 +81,7 @@ export default function Users() {
       >
         <SpeedDial
           sx={{ position: "absolute", bottom: 16, right: 16 }}
-          ariaLabel='SpeedDial basic example'
+          ariaLabel="SpeedDial basic example"
           icon={<SpeedDialIcon />}
         >
           {actions.map((action) => (
@@ -145,7 +108,7 @@ export default function Users() {
             paddingTop: "50px",
           },
         }}
-        anchor='right'
+        anchor="right"
         open={selectedAction !== null}
         onClose={() => setSelectedAction(null)}
       >

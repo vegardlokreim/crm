@@ -3,13 +3,13 @@ import { Box, Drawer, Grid, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import InfoDrawer from "./InfoDrawer";
 
 const TableGrid = ({ rows, columns, isLoading, navigateTo, heading, xs }) => {
   const navigate = useNavigate();
   const theme = useTheme();
   const [checkboxSelection, setCheckboxSelection] = useState(true);
-  const [infoDrawerOpen, setInfoDrawerOpen] = useState(null);
+  const [indexForInfoDrawer, setIndexForInfoDrawer] = useState(null);
+  const [rowId, setRowId] = useState(null);
 
   return (
     <Grid item xs={xs}>
@@ -49,12 +49,7 @@ const TableGrid = ({ rows, columns, isLoading, navigateTo, heading, xs }) => {
           },
         }}
       >
-        <Typography
-          variant="h4"
-          color={theme.palette.secondary[100]}
-          fontWeight="bold"
-          sx={{ mb: "20px" }}
-        >
+        <Typography variant="h4" color={theme.palette.secondary[100]} fontWeight="bold" sx={{ mb: "20px" }}>
           {heading}
         </Typography>
         <DataGrid
@@ -67,10 +62,9 @@ const TableGrid = ({ rows, columns, isLoading, navigateTo, heading, xs }) => {
           disableSelectionOnClick
           onClick={() => setCheckboxSelection(!checkboxSelection)}
           onRowDoubleClick={(row) => {
-            console.log(navigateTo)
-            setInfoDrawerOpen(navigateTo);
-            }
-          }
+            setIndexForInfoDrawer(navigateTo);
+            setRowId(row.id);
+          }}
         />
       </Box>
       <Drawer
@@ -86,19 +80,19 @@ const TableGrid = ({ rows, columns, isLoading, navigateTo, heading, xs }) => {
           },
         }}
         anchor="right"
-        open={infoDrawerOpen !== null}
+        open={indexForInfoDrawer !== null}
         onClose={() => {
-          setInfoDrawerOpen(null)
+          setIndexForInfoDrawer(null);
         }}
       >
         {(() => {
-          switch (infoDrawerOpen) {
+          switch (indexForInfoDrawer) {
             case "/deal/":
-                return "Deal"
+              navigate(`${navigateTo}${rowId}`);
             case "/contact/":
-              return "Users";
-            case "Edit recurring payments":
-              return "<h1>Edit recurring payments</h1>";
+              return indexForInfoDrawer;
+            case "/task/":
+              return indexForInfoDrawer;
             case "Edit customer":
               return "<h1>Edit customer</h1>";
             default:

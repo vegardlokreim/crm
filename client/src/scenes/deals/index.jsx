@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Drawer,
-  SpeedDial,
-  SpeedDialAction,
-  SpeedDialIcon,
-  Tab,
-  Tabs,
-  useTheme,
-} from "@mui/material";
+import { Box, Drawer, SpeedDial, SpeedDialAction, SpeedDialIcon, Tab, Tabs, useTheme } from "@mui/material";
 import { useGetDealsByStatusQuery, useGetDealsQuery } from "state/api";
 import Header from "components/Header";
 import { useNavigate } from "react-router-dom";
@@ -24,17 +15,10 @@ export default function Deals() {
   const [dealsAdded, setDealsAdded] = useState(0);
 
   const navigate = useNavigate();
-  const {
-    data: allDeals,
-    isLoading: allDealsLoading,
-    refetch: refetchAllDeals,
-  } = useGetDealsQuery();
-  const { data: pendingDeals, isLoading: pendingDealsLoading } =
-    useGetDealsByStatusQuery("pending");
-  const { data: wonDeals, isLoading: wonDealsLoading } =
-    useGetDealsByStatusQuery("won");
-  const { data: lostDeals, isLoading: lostDealsLoading } =
-    useGetDealsByStatusQuery("lost");
+  const { data: allDeals, isLoading: allDealsLoading, refetch: refetchAllDeals } = useGetDealsQuery();
+  const { data: pendingDeals, isLoading: pendingDealsLoading } = useGetDealsByStatusQuery("pending");
+  const { data: wonDeals, isLoading: wonDealsLoading } = useGetDealsByStatusQuery("won");
+  const { data: lostDeals, isLoading: lostDealsLoading } = useGetDealsByStatusQuery("lost");
 
   useEffect(() => {
     refetchAllDeals();
@@ -109,9 +93,7 @@ export default function Deals() {
         const day = date.getDate();
         const month = date.getMonth() + 1;
         const year = date.getFullYear();
-        return `${day < 10 ? "0" : ""}${day}.${
-          month < 10 ? "0" : ""
-        }${month}.${year}`;
+        return `${day < 10 ? "0" : ""}${day}.${month < 10 ? "0" : ""}${month}.${year}`;
       },
     },
   ];
@@ -157,11 +139,7 @@ export default function Deals() {
       {/* Tabs */}
       <Box sx={{ width: "100%", mt: "30px" }}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="basic tabs example"
-          >
+          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
             <Tab label="All deals" {...a11yProps(0)} />
             <Tab label="Pending" {...a11yProps(1)} />
             <Tab label="Won" {...a11yProps(2)} />
@@ -185,6 +163,7 @@ export default function Deals() {
         <TabPanel value={value} index={1}>
           <TableGrid
             rows={pendingDeals}
+            refetch={refetchAllDeals}
             columns={columns}
             isLoading={pendingDealsLoading}
             navigateTo="/deal/"
@@ -197,20 +176,22 @@ export default function Deals() {
           <TableGrid
             rows={wonDeals}
             columns={columns}
+            refetch={refetchAllDeals}
             isLoading={wonDealsLoading}
             navigateTo="/deal/"
             heading="Won deals"
             xs={4}
           />
         </TabPanel>
-        {/* CONTACTS TAB */}
+        {/* LOST DEALS TAB */}
         <TabPanel value={value} index={3}>
           <TableGrid
             rows={lostDeals}
             columns={columns}
+            refetch={refetchAllDeals}
             isLoading={lostDealsLoading}
             navigateTo="/deal/"
-            heading="Won deals"
+            heading="Lost deals"
             xs={4}
           />
         </TabPanel>
@@ -277,12 +258,7 @@ export default function Deals() {
         {(() => {
           switch (selectedAction) {
             case "Create deal":
-              return (
-                <CreateDeal
-                  closeDrawer={setSelectedAction}
-                  refetchDeals={refetchAllDeals}
-                />
-              );
+              return <CreateDeal closeDrawer={setSelectedAction} refetchDeals={refetchAllDeals} />;
             case "Edit contacts":
               return "Edit contacts";
             case "Edit recurring payments":

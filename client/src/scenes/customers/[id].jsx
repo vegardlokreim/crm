@@ -1,37 +1,24 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Box, Grid, Typography, useTheme, Drawer } from "@mui/material";
-import {
-  useGetContactsFromCustomerQuery,
-  useGetCustomerQuery,
-  useGetDealsByCompanyIdQuery,
-  useGetTasksByCustomerIdQuery,
-} from "state/api";
+import React, { useState } from "react";
+import { Box, useTheme, Drawer } from "@mui/material";
+import { useGetCustomerQuery, useGetDealsByCompanyIdQuery, useGetTasksByCustomerIdQuery } from "state/api";
 import Header from "components/Header";
-import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate, useParams } from "react-router-dom";
 
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
-import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
-import SaveIcon from "@mui/icons-material/Save";
-import PrintIcon from "@mui/icons-material/Print";
-import ShareIcon from "@mui/icons-material/Share";
-import {
-  ApartmentOutlined,
-  PaidOutlined,
-  PermIdentityOutlined,
-} from "@mui/icons-material";
+
+import { ApartmentOutlined, PaidOutlined, PermIdentityOutlined } from "@mui/icons-material";
 import TableGrid from "./TableGrid";
 
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import AddContact from "./AddContact";
-import PieChart from "components/PieChart";
-import BreakdownChart from "components/BreakdownChart";
 import CustomerDashboard from "./CustomerDashboard";
+
+/* COLUMNS IMPORT */
+import { contactsColumns, dealsColumns } from "columns/columns";
 
 {
   /* SpeedDial actions */
@@ -51,17 +38,9 @@ export default function CustomerOverview() {
   const [selectedAction, setSelectedAction] = useState(null);
 
   const { data, isLoading } = useGetCustomerQuery(id);
-  const {
-    data: tasks,
-    isLoading: isTasksLoading,
-    refetch: refetchTasks,
-  } = useGetTasksByCustomerIdQuery(id);
+  const { data: tasks, isLoading: isTasksLoading, refetch: refetchTasks } = useGetTasksByCustomerIdQuery(id);
 
-  const {
-    data: deals,
-    isLoading: isDealsLoading,
-    refetch: refetchDeals,
-  } = useGetDealsByCompanyIdQuery(id);
+  const { data: deals, isLoading: isDealsLoading, refetch: refetchDeals } = useGetDealsByCompanyIdQuery(id);
 
   const contacts = data?.contacts.map((contact) => {
     return {
@@ -74,90 +53,6 @@ export default function CustomerOverview() {
     };
   });
 
-  const flattenTasks = tasks?.map((task) => {
-    try {
-      const {
-        userId: { firstName, lastName, email },
-      } = task;
-      return {
-        ...task,
-        userName: firstName + " " + lastName,
-      };
-    } catch (error) {
-      return { ...task };
-    }
-  });
-
-  const contactsColumns = [
-    {
-      field: "firstName",
-      headerName: "First Name",
-      flex: 0.8,
-    },
-    {
-      field: "lastName",
-      headerName: "Last Name",
-      flex: 0.8,
-    },
-    {
-      field: "role",
-      headerName: "Role",
-      flex: 1,
-    },
-
-    {
-      field: "email",
-      headerName: "E-mail",
-      flex: 1,
-    },
-    {
-      field: "phone",
-      headerName: "Phone",
-      flex: 1,
-    },
-  ];
-  const dealsColumns = [
-    {
-      field: "title",
-      headerName: "Title",
-      flex: 0.8,
-    },
-    {
-      field: "price",
-      headerName: "Price",
-      flex: 1,
-    },
-
-    {
-      field: "status",
-      headerName: "Status",
-      flex: 1,
-    },
-    {
-      field: "userId",
-      headerName: "User",
-      flex: 1,
-      renderCell: (params) => {
-        return params.value.firstName + " " + params.value.lastName;
-      },
-      sortComparator: (v1, v2, param1, param2) => {
-        // Extract the sortable value from the `user` object
-        const name1 = param1.value.firstName + " " + param1.value.lastName;
-        const name2 = param2.value.firstName + " " + param2.value.lastName;
-        return name1.localeCompare(name2);
-      },
-    },
-    {
-      field: "dateCreated",
-      headerName: "Created",
-      flex: 1,
-    },
-    {
-      field: "dateUpdated",
-      headerName: "Last Updated",
-      flex: 1,
-    },
-  ];
   const taskColumns = [
     {
       field: "title",
@@ -227,13 +122,8 @@ export default function CustomerOverview() {
 
   //Total Count
   const totalWon = deals?.filter((deal) => deal.status === "won").length;
-
-  const totalPending = deals?.filter(
-    (deal) => deal.status === "pending"
-  ).length;
-
+  const totalPending = deals?.filter((deal) => deal.status === "pending").length;
   const totalLost = deals?.filter((deal) => deal.status === "lost").length;
-
   // const totalWon = deals
   //   .filter((deal) => deal.status === "won")
   //   .reduce((acc, deal) => acc + deal.price, 0);
@@ -257,11 +147,7 @@ export default function CustomerOverview() {
       {/* Tabs */}
       <Box sx={{ width: "100%", mt: "30px" }}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="basic tabs example"
-          >
+          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
             <Tab label="Overview" {...a11yProps(0)} />
             <Tab label="Tasks" {...a11yProps(1)} />
             <Tab label="Deals" {...a11yProps(2)} />
@@ -282,14 +168,7 @@ export default function CustomerOverview() {
         </TabPanel>
         {/* TASK TAB */}
         <TabPanel value={value} index={1}>
-          <TableGrid
-            rows={tasks}
-            columns={taskColumns}
-            isLoading={false}
-            navigateTo="/task/"
-            heading="Tasks"
-            xs={4}
-          />
+          <TableGrid rows={tasks} columns={taskColumns} isLoading={false} navigateTo="/task/" heading="Tasks" xs={4} />
         </TabPanel>
         {/* DEALS TAB */}
         <TabPanel value={value} index={2}>
@@ -314,8 +193,6 @@ export default function CustomerOverview() {
           />
         </TabPanel>
       </Box>
-      {/* <Grid container spacing={3}></Grid>
-      <Grid container spacing={3} sx={{ mt: 5 }}></Grid> */}
 
       {/* BOX WITH SpeedDial INSIDE */}
       <Box
