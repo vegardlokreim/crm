@@ -1,7 +1,19 @@
+import { Box } from "@mui/system";
+import DataTable from "components/DataTable";
+import Header from "components/Header";
 import React from "react";
 
+import { customerListColumns as columns } from "columns/columns";
+import { useGetCustomersQuery } from "state/api";
+
 const Customers = () => {
-  return <div>Customer</div>;
+  const { data, isLoading } = useGetCustomersQuery();
+  return (
+    <Box p={"40px"}>
+      <Header title="Customer" subtitle="List of customers" />
+      <DataTable rows={data} columns={columns} isLoading={isLoading} tableFor="customers" />
+    </Box>
+  );
 };
 
 export default Customers;
