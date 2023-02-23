@@ -20,10 +20,6 @@ function App() {
             <Route element={<Layout />}>
               <Route path="/" element={<Navigate to="/customers" replace />} />
               <Route path="/customers" element={<Customers />} />
-
-
-
-
             </Route>
           </Routes>
         </ThemeProvider>
