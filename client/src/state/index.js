@@ -3,7 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     mode: "dark",
     userId: "63701cc1f03239b7f700000e",
-    selectedId: { idFor: "", id: "" }
+    selectedId: { idFor: "", id: "" },
+    speedDialAction: "",
+    isDrawerOpen: false
 };
 
 export const globalSlice = createSlice({
@@ -15,12 +17,16 @@ export const globalSlice = createSlice({
         },
         setId: (state, action) => {
             state.selectedId = action.payload;
-
-            console.log(state.selectedId);
+        },
+        setDraweContent: (state, action) => {
+            state.speedDialAction = action.payload;
+        },
+        setIsDrawerOpen: (state, action) => {
+            state.isDrawerOpen = action.payload;
         }
     },
 });
 
-export const { setMode, setId } = globalSlice.actions;
+export const { setMode, setId, setDraweContent, setIsDrawerOpen } = globalSlice.actions;
 
 export default globalSlice.reducer;
