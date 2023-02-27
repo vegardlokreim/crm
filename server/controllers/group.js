@@ -9,7 +9,6 @@ export const getGroups = async (req, res) => {
     }
 }
 
-
 //endpoint to create a new group
 export const createGroup = async (req, res) => {
     try {

@@ -3,7 +3,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 
 export default function ComboBox({
   label,
-  options = [],
+  options = [{ label: "Hello", value: "World" }],
   setSelectedOption,
   marginBottom,
 }) {
@@ -11,15 +11,21 @@ export default function ComboBox({
     <Autocomplete
       disablePortal
       id="combo-box-demo"
-      isOptionEqualToValue={(option, value) => option.value === value.value}
+      isOptionEqualToValue={(option, value) =>
+        option.value === value.value
+      }
       options={options}
       sx={{ width: "100%", mb: { marginBottom } }}
-      renderInput={(params) => <TextField {...params} label={label} />}
+      renderInput={(params) => (
+        <TextField {...params} label={label} />
+      )}
       onChange={(event, selectedOption) => {
-        try {
+        if (setSelectedOption) {
           setSelectedOption(selectedOption.value);
-        } catch (err) {
-          setSelectedOption("other");
+        } else {
+          console.log(
+            "AddUserForm.jsx file Set selected option is not set"
+          );
         }
       }}
     />

@@ -11,7 +11,13 @@ const Customers = () => {
   return (
     <Box p={"40px"}>
       <Header title="Customer" subtitle="List of customers" />
-      <DataTable rows={data} columns={columns} isLoading={isLoading} tableFor="customers" />
+      <DataTable
+        rows={data}
+        columns={columns}
+        isLoading={isLoading}
+        tableFor="customers"
+        navigateTo="/customer/"
+      />
     </Box>
   );
 };

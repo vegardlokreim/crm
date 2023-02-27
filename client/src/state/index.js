@@ -4,7 +4,7 @@ const initialState = {
     mode: "dark",
     userId: "63701cc1f03239b7f700000e",
     selectedId: { idFor: "", id: "" },
-    speedDialAction: "",
+    drawerContent: "",
     isDrawerOpen: false
 };
 
@@ -19,7 +19,7 @@ export const globalSlice = createSlice({
             state.selectedId = action.payload;
         },
         setDraweContent: (state, action) => {
-            state.speedDialAction = action.payload;
+            state.drawerContent = action.payload;
         },
         setIsDrawerOpen: (state, action) => {
             state.isDrawerOpen = action.payload;

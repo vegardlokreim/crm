@@ -8,6 +8,8 @@ import Layout from "scenes/layout";
 
 import Customers from "scenes/customers";
 import Users from "scenes/users";
+import CustomerView from "scenes/customers/[id]";
+import Deals from "scenes/deals";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -21,7 +23,10 @@ function App() {
             <Route element={<Layout />}>
               <Route path="/" element={<Navigate to="/customers" replace />} />
               <Route path="/customers" element={<Customers />} />
+              <Route path="/customer/:id" element={<CustomerView />} />
               <Route path="/users" element={<Users />} />
+              <Route path="/deals" element={<Deals />} />
+
             </Route>
           </Routes>
         </ThemeProvider>

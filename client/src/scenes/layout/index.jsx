@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Navbar from "components/Navbar";
 import Sidebar from "components/Sidebar";
 import { useGetUserQuery } from "state/api";
+import ActionDrawer from "components/ActionDrawer";
 
 const Layout = () => {
   const isNonMobile = useMediaQuery("(min-width: 600px)");
@@ -27,6 +28,7 @@ const Layout = () => {
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}
         />
+        <ActionDrawer />
         <Outlet />
       </Box>
     </Box>

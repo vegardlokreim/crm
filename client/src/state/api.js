@@ -15,10 +15,27 @@ export const api = createApi({
       query: () => "/user",
       providesTags: ["User"],
     }),
+    getCustomer: build.query({
+      query: (id) => `/company/${id}`,
+      providesTags: ["Customers"],
+    }),
     getCustomers: build.query({
       query: () => "/company",
       providesTags: ["Customers"],
     }),
+    getDeals: build.query({
+      query: () => `/deal`,
+      providesTags: ["Deals"]
+    }),
+    getDealsByCustomerId: build.query({
+      query: (id) => `/deal/getDealsByCompanyId/${id}`,
+      providesTags: ["Deals"]
+    }),
+    getDealsByStatus: build.query({
+      query: (status) => `/deal/getDealsByStatus/${status}`,
+      providesTags: ["Deals"]
+    }),
+
   }),
 });
 
@@ -26,4 +43,8 @@ export const {
   useGetUserQuery,
   useGetUsersQuery,
   useGetCustomersQuery,
+  useGetCustomerQuery,
+  useGetDealsQuery,
+  useGetDealsByCustomerIdQuery,
+  useGetDealsByStatusQuery
 } = api;

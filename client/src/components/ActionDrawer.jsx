@@ -1,28 +1,41 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsDrawerOpen } from "state";
+import AddUserForm from "./AddUserForm";
+import EditDeal from "./EditDeal";
 
 export default function ActionDrawer() {
+  const dispatch = useDispatch();
+  const isDrawerOpen = useSelector((state) => state.global.isDrawerOpen);
+  const drawerContent = useSelector((state) => state.global.drawerContent);
+  const selectedId = useSelector((state) => state.global.selectedId);
+
   return (
     <div>
       <Drawer
-        sx={{ minWidth: "200px" }}
+        sx={{
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            padding: "20px",
+            width: "20vw",
+          },
+        }}
         anchor="right"
-        open={true}
+        open={isDrawerOpen}
         onClose={() => {
-          console.log("Close");
+          dispatch(setIsDrawerOpen(false));
         }}
       >
-        Hei
+        {(() => {
+          switch (drawerContent) {
+            case "add user from users list":
+              return <AddUserForm />;
+            case "edit deal":
+              return <EditDeal id={selectedId.id} />;
+            default:
+              return drawerContent;
+          }
+        })()}
       </Drawer>
     </div>
   );
