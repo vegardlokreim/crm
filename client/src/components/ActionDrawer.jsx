@@ -20,7 +20,7 @@ export default function ActionDrawer() {
             width: "20vw",
           },
         }}
-        anchor="right"
+        anchor='right'
         open={isDrawerOpen}
         onClose={() => {
           dispatch(setIsDrawerOpen(false));
@@ -31,7 +31,10 @@ export default function ActionDrawer() {
             case "add user from users list":
               return <AddUserForm />;
             case "edit deal":
-              return <EditDeal id={selectedId.id} />;
+              if (selectedId.idFor == "deals") {
+                return <EditDeal id={selectedId.id} />;
+              }
+
             default:
               return drawerContent;
           }

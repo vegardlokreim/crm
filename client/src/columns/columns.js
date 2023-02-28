@@ -69,6 +69,29 @@ export const dealsColumns = [
         flex: 1,
     },
 ];
+export const tasksColumns = [
+    {
+        field: "title",
+        headerName: "Title",
+        flex: 0.8,
+    },
+    {
+        field: "companyId",
+        headerName: "CompanyId",
+        flex: 1,
+    },
+
+    {
+        field: "user",
+        headerName: "User",
+        flex: 1,
+    },
+    {
+        field: "status",
+        headerName: "Status",
+        flex: 1,
+    }
+];
 
 export const customerListColumns = [
     {

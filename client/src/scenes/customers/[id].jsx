@@ -1,15 +1,26 @@
 import { useParams } from "react-router-dom";
-import { useGetCustomerQuery, useGetDealsByCustomerIdQuery } from "state/api";
+import {
+  useGetCustomerQuery,
+  useGetDealsByCustomerIdQuery,
+  useGetContactsQuery,
+  useGetTasksByCompanyIdQuery,
+} from "state/api";
 import Tabs from "components/Tabs";
 import { TextField } from "@mui/material";
-import { dealsColumns } from "columns/columns";
+import { dealsColumns, contactsColumns, tasksColumns } from "columns/columns";
 import DataTable from "components/DataTable";
+import Header from "components/Header";
 
 const CustomerView = () => {
   const { id } = useParams();
   const { data: customerData, isLoading: customerDataIsLoading } =
     useGetCustomerQuery(id);
-  const { data: deals, isLoading: dealsIsLoading } = useGetDealsByCustomerIdQuery(id);
+  const { data: deals, isLoading: dealsIsLoading } =
+    useGetDealsByCustomerIdQuery(id);
+  const { data: contacts, isLoading: contactsIsLoading } =
+    useGetContactsQuery(id);
+  const { data: tasks, isLoading: tasksIsLoading } =
+    useGetTasksByCompanyIdQuery(id);
 
   console.log(deals);
 
@@ -21,22 +32,45 @@ const CustomerView = () => {
   ];
 
   const panels = [
-    { component: <TextField label="OVERVIEW" /> },
-    { component: <TextField label="Tasks" /> },
+    { component: <TextField label='OVERVIEW' /> },
+    {
+      component: (
+        <DataTable
+          rows={tasks}
+          columns={tasksColumns}
+          isLoading={tasksIsLoading}
+          tableFor='tasks'
+        />
+      ),
+    },
     {
       component: (
         <DataTable
           rows={deals}
           columns={dealsColumns}
           isLoading={dealsIsLoading}
-          tableFor="deals"
+          tableFor='deals'
         />
       ),
     },
-    { component: <TextField label="CONTACTS" /> },
+    {
+      component: (
+        <DataTable
+          rows={contacts}
+          columns={contactsColumns}
+          isLoading={contactsIsLoading}
+          tableFor='contacts'
+        />
+      ),
+    },
   ];
 
-  return <Tabs tabs={tabs} panels={panels}></Tabs>;
+  return (
+    <div>
+      <Header title={customerData?.name} />
+      <Tabs tabs={tabs} panels={panels}></Tabs>
+    </div>
+  );
 };
 
 export default CustomerView;

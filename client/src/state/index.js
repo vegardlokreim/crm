@@ -5,7 +5,8 @@ const initialState = {
     userId: "63701cc1f03239b7f700000e",
     selectedId: { idFor: "", id: "" },
     drawerContent: "",
-    isDrawerOpen: false
+    isDrawerOpen: false,
+    refetch: null,
 };
 
 export const globalSlice = createSlice({
@@ -23,7 +24,8 @@ export const globalSlice = createSlice({
         },
         setIsDrawerOpen: (state, action) => {
             state.isDrawerOpen = action.payload;
-        }
+        },
+
     },
 });
 

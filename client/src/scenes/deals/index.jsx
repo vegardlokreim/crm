@@ -5,7 +5,6 @@ import React from "react";
 
 import { dealsColumns } from "columns/columns";
 import { useGetDealsByStatusQuery, useGetDealsQuery } from "state/api";
-import { TextField } from "@mui/material";
 import Tabs from "components/Tabs";
 
 const Deals = () => {
@@ -31,8 +30,8 @@ const Deals = () => {
           rows={deals}
           columns={dealsColumns}
           isLoading={dealsIsLoading}
-          tableFor="deals"
-          drawerContent="edit deal"
+          tableFor='deals'
+          drawerContent='edit deal'
         />
       ),
     },
@@ -42,7 +41,7 @@ const Deals = () => {
           rows={pendingDeals}
           columns={dealsColumns}
           isLoading={pendingDealsIsLoading}
-          tableFor="deals"
+          tableFor='deals'
         />
       ),
     },
@@ -52,7 +51,7 @@ const Deals = () => {
           rows={wonDeals}
           columns={dealsColumns}
           isLoading={wonDealsIsLoading}
-          tableFor="deals"
+          tableFor='deals'
         />
       ),
     },
@@ -62,7 +61,7 @@ const Deals = () => {
           rows={lostDeals}
           columns={dealsColumns}
           isLoading={lostDealsIsLoading}
-          tableFor="deals"
+          tableFor='deals'
         />
       ),
     },
@@ -70,7 +69,7 @@ const Deals = () => {
 
   return (
     <Box p={"40px"}>
-      <Header title="Deals" subtitle="List of deals" />
+      <Header title='Deals' subtitle='List of deals' />
       <Tabs tabs={tabs} panels={panels}></Tabs>
     </Box>
   );

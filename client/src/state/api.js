@@ -15,10 +15,27 @@ export const api = createApi({
       query: () => "/user",
       providesTags: ["User"],
     }),
+    createUser: build.mutation({
+      query: (user) => ({
+        url: '/user/createUser',
+        method: 'POST',
+        body: user,
+      }),
+      invalidatesTags: ['User'],
+    }),
     getCustomer: build.query({
       query: (id) => `/company/${id}`,
       providesTags: ["Customers"],
     }),
+    getContacts: build.query({
+      query: (id) => `/company/getContacts/${id}`,
+      providesTags: ["Customers"],
+    }),
+    getTasksByCompanyId: build.query({
+      query: (id) => `/task/getTasksByCompanyId/${id}`,
+      providesTags: ["Tasks"],
+    }),
+    
     getCustomers: build.query({
       query: () => "/company",
       providesTags: ["Customers"],
@@ -42,8 +59,11 @@ export const api = createApi({
 export const {
   useGetUserQuery,
   useGetUsersQuery,
+  useCreateUserMutation,
   useGetCustomersQuery,
   useGetCustomerQuery,
+  useGetContactsQuery,
+  useGetTasksByCompanyIdQuery,
   useGetDealsQuery,
   useGetDealsByCustomerIdQuery,
   useGetDealsByStatusQuery
