@@ -1,5 +1,5 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.2 Safari/605.1.15" version="26.2.14">
-  <diagram name="Page-1" id="zZ7o5Lh3LZZuLULC9xzV">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.2 Safari/605.1.15" version="26.2.14" pages="2">
+  <diagram name="Melde sykefravær" id="zZ7o5Lh3LZZuLULC9xzV">
     <mxGraphModel dx="538" dy="619" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
@@ -37,14 +37,81 @@
         <mxCell id="74Tr3JPsgQ8kXuGabex6-5" value="Involvert i vakt i fraværsintrevall?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="196.5" y="370" width="169" height="80" as="geometry" />
         </mxCell>
+        <mxCell id="JpXMr8tUnl5NB5sbZeJr-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="74Tr3JPsgQ8kXuGabex6-7" target="JpXMr8tUnl5NB5sbZeJr-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="74Tr3JPsgQ8kXuGabex6-7" value="Varsle avd. admin.&lt;div&gt;Hent relevante data og vis konsekvens i arbeidsplan&lt;/div&gt;" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="221" y="525" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="74Tr3JPsgQ8kXuGabex6-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="74Tr3JPsgQ8kXuGabex6-10" target="74Tr3JPsgQ8kXuGabex6-7" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="JpXMr8tUnl5NB5sbZeJr-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="74Tr3JPsgQ8kXuGabex6-10" target="JpXMr8tUnl5NB5sbZeJr-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="74Tr3JPsgQ8kXuGabex6-10" value="Varsle turnusadministrator og opprett vakant (DV/NV) vakt(er) og vis turnus" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="420" y="515" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="JpXMr8tUnl5NB5sbZeJr-8" value="Start Vakans i turnus" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="445" y="650" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="JpXMr8tUnl5NB5sbZeJr-11" value="Rediger oppgaver i arbeidsplan og send varsel om endring til involverte" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="231" y="620" width="100" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="bpJ8O_S1JZ5owJ0o4Rz1" name="Page-2">
+    <mxGraphModel dx="1365" dy="619" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="mHHK4d2mUXMLSCN07X2n-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mHHK4d2mUXMLSCN07X2n-1" target="mHHK4d2mUXMLSCN07X2n-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mHHK4d2mUXMLSCN07X2n-1" value="&lt;span style=&quot;text-align: start; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);&quot; data-lucid-content=&quot;{&amp;quot;t&amp;quot;:&amp;quot;Det har oppstått en vakant DV eller NV (av en eller annen grunn) i en divisjonsturnus&amp;quot;,&amp;quot;m&amp;quot;:[{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;p&amp;quot;,&amp;quot;v&amp;quot;:1.2},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;s&amp;quot;,&amp;quot;v&amp;quot;:22.22222222222222,&amp;quot;e&amp;quot;:85},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;fsp&amp;quot;,&amp;quot;v&amp;quot;:&amp;quot;ss_presetShapeStyle1_textStyle&amp;quot;,&amp;quot;e&amp;quot;:85},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;fsp2&amp;quot;,&amp;quot;v&amp;quot;:&amp;quot;ss_presetShapeStyle1_textStyle&amp;quot;,&amp;quot;e&amp;quot;:85}]}&quot; data-lucid-type=&quot;application/vnd.lucid.text&quot;&gt;&lt;span style=&quot;font-size: 16.666667px;&quot;&gt;Det har oppstått en vakant DV eller NV (av en eller annen grunn) i en avdelingsturnus&lt;/span&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="210" y="40" width="140" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="mHHK4d2mUXMLSCN07X2n-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mHHK4d2mUXMLSCN07X2n-2" target="mHHK4d2mUXMLSCN07X2n-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mHHK4d2mUXMLSCN07X2n-6" value="NV" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="mHHK4d2mUXMLSCN07X2n-5">
+          <mxGeometry x="-0.0809" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mHHK4d2mUXMLSCN07X2n-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mHHK4d2mUXMLSCN07X2n-2" target="mHHK4d2mUXMLSCN07X2n-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mHHK4d2mUXMLSCN07X2n-9" value="DV" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="mHHK4d2mUXMLSCN07X2n-8">
+          <mxGeometry x="-0.0554" y="-2" relative="1" as="geometry">
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mHHK4d2mUXMLSCN07X2n-2" value="&lt;span style=&quot;text-align: start; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);&quot; data-lucid-content=&quot;{&amp;quot;t&amp;quot;:&amp;quot;Nattevakt eller dagvakt&amp;quot;,&amp;quot;m&amp;quot;:[{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;p&amp;quot;,&amp;quot;v&amp;quot;:1.2},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;s&amp;quot;,&amp;quot;v&amp;quot;:22.22222222222222,&amp;quot;e&amp;quot;:23},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;fsp&amp;quot;,&amp;quot;v&amp;quot;:&amp;quot;ss_presetShapeStyle1_textStyle&amp;quot;,&amp;quot;e&amp;quot;:23},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;fsp2&amp;quot;,&amp;quot;v&amp;quot;:&amp;quot;ss_presetShapeStyle1_textStyle&amp;quot;,&amp;quot;e&amp;quot;:23}]}&quot; data-lucid-type=&quot;application/vnd.lucid.text&quot;&gt;&lt;span style=&quot;font-size: 16.666667px;&quot;&gt;Nattevakt eller dagvakt?&lt;/span&gt;&lt;/span&gt;" style="rhombus;whiteSpace=wrap;html=1;rounded=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="270" width="160" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="mHHK4d2mUXMLSCN07X2n-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.554;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.467;exitY=1.015;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="mHHK4d2mUXMLSCN07X2n-4" target="mHHK4d2mUXMLSCN07X2n-10">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="30" y="540" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="4" y="552" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mHHK4d2mUXMLSCN07X2n-4" value="&lt;span style=&quot;text-align: start; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);&quot; data-lucid-content=&quot;{&amp;quot;t&amp;quot;:&amp;quot;Vis liste med aktuelle kandidater (fjern alle som går av eller på vakt tilstøtende døgn eller er i fravær). Ranger etter: Hvor vakans er generert og oppgavebyrder&amp;quot;,&amp;quot;m&amp;quot;:[{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;s&amp;quot;,&amp;quot;v&amp;quot;:22.22222222222222,&amp;quot;e&amp;quot;:162},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;fsp&amp;quot;,&amp;quot;v&amp;quot;:&amp;quot;ss_presetShapeStyle1_textStyle&amp;quot;,&amp;quot;e&amp;quot;:162},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;fsp2&amp;quot;,&amp;quot;v&amp;quot;:&amp;quot;ss_presetShapeStyle1_textStyle&amp;quot;,&amp;quot;e&amp;quot;:162}]}&quot; data-lucid-type=&quot;application/vnd.lucid.text&quot;&gt;&lt;span style=&quot;font-size: 16.666667px;&quot;&gt;Vis liste med aktuelle kandidater (fjern alle som går av eller på vakt tilstøtende døgn eller er i fravær). Ranger etter: Oppgavebyrder&lt;/span&gt;&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="-80" y="253.75" width="180" height="177.5" as="geometry" />
+        </mxCell>
+        <mxCell id="mHHK4d2mUXMLSCN07X2n-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="mHHK4d2mUXMLSCN07X2n-7" target="mHHK4d2mUXMLSCN07X2n-10">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="570" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mHHK4d2mUXMLSCN07X2n-7" value="&lt;span style=&quot;text-align: start; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);&quot; data-lucid-content=&quot;{&amp;quot;t&amp;quot;:&amp;quot;Vis liste med aktuelle kandidater (fjern alle som går av eller på vakt tilstøtende døgn eller er i fravær). Ranger etter: Hvor vakans er generert og oppgavebyrder&amp;quot;,&amp;quot;m&amp;quot;:[{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;s&amp;quot;,&amp;quot;v&amp;quot;:22.22222222222222,&amp;quot;e&amp;quot;:162},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;fsp&amp;quot;,&amp;quot;v&amp;quot;:&amp;quot;ss_presetShapeStyle1_textStyle&amp;quot;,&amp;quot;e&amp;quot;:162},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;fsp2&amp;quot;,&amp;quot;v&amp;quot;:&amp;quot;ss_presetShapeStyle1_textStyle&amp;quot;,&amp;quot;e&amp;quot;:162}]}&quot; data-lucid-type=&quot;application/vnd.lucid.text&quot;&gt;&lt;span style=&quot;font-size: 16.666667px;&quot;&gt;Vis liste med aktuelle kandidater (fjern alle som går av eller på vakt tilstøtende døgn eller er i fravær). Ranger etter: Oppgavebyrder&lt;/span&gt;&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="470" y="246.88" width="200" height="191.25" as="geometry" />
+        </mxCell>
+        <mxCell id="mHHK4d2mUXMLSCN07X2n-10" value="&lt;span style=&quot;text-align: start; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);&quot; data-lucid-content=&quot;{&amp;quot;t&amp;quot;:&amp;quot;Rediger listen manuelt ved å merke/avmerke personer&amp;quot;,&amp;quot;m&amp;quot;:[{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;s&amp;quot;,&amp;quot;v&amp;quot;:22.22222222222222,&amp;quot;e&amp;quot;:51},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;fsp&amp;quot;,&amp;quot;v&amp;quot;:&amp;quot;ss_presetShapeStyle1_textStyle&amp;quot;,&amp;quot;e&amp;quot;:51},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;fsp2&amp;quot;,&amp;quot;v&amp;quot;:&amp;quot;ss_presetShapeStyle1_textStyle&amp;quot;,&amp;quot;e&amp;quot;:51}]}&quot; data-lucid-type=&quot;application/vnd.lucid.text&quot;&gt;&lt;span style=&quot;font-size: 16.666667px;&quot;&gt;Rediger listen manuelt ved å merke/avmerke personer&lt;/span&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="160" y="480" width="240" height="130" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
