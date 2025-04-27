@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.2 Safari/605.1.15" version="26.2.14">
+  <diagram name="Page-1" id="zZ7o5Lh3LZZuLULC9xzV">
+    <mxGraphModel dx="538" dy="619" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="74Tr3JPsgQ8kXuGabex6-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="74Tr3JPsgQ8kXuGabex6-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="281" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="74Tr3JPsgQ8kXuGabex6-1" value="Melde sykefravær" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="221" y="70" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="74Tr3JPsgQ8kXuGabex6-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="74Tr3JPsgQ8kXuGabex6-4" target="74Tr3JPsgQ8kXuGabex6-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="74Tr3JPsgQ8kXuGabex6-4" value="Velg dato fra-til (dagens dato er default)" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="241" y="200" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="74Tr3JPsgQ8kXuGabex6-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="74Tr3JPsgQ8kXuGabex6-5" target="74Tr3JPsgQ8kXuGabex6-7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="74Tr3JPsgQ8kXuGabex6-9" value="Nei" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="74Tr3JPsgQ8kXuGabex6-8" vertex="1" connectable="0">
+          <mxGeometry x="-0.0144" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="74Tr3JPsgQ8kXuGabex6-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="74Tr3JPsgQ8kXuGabex6-5" target="74Tr3JPsgQ8kXuGabex6-10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="74Tr3JPsgQ8kXuGabex6-12" value="Ja" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="74Tr3JPsgQ8kXuGabex6-11" vertex="1" connectable="0">
+          <mxGeometry x="-0.0718" y="-4" relative="1" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="74Tr3JPsgQ8kXuGabex6-5" value="Involvert i vakt i fraværsintrevall?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="196.5" y="370" width="169" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="74Tr3JPsgQ8kXuGabex6-7" value="Varsle avd. admin.&lt;div&gt;Hent data og vis konsekvens i arbeidsplan&lt;/div&gt;" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="221" y="525" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="74Tr3JPsgQ8kXuGabex6-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="74Tr3JPsgQ8kXuGabex6-10" target="74Tr3JPsgQ8kXuGabex6-7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="74Tr3JPsgQ8kXuGabex6-10" value="Varsle turnusadministrator og opprett vakant (DV/NV) vakt(er) og vis turnus" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="420" y="515" width="150" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
