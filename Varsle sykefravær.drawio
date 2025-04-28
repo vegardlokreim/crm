@@ -50,7 +50,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="74Tr3JPsgQ8kXuGabex6-10" value="Varsle turnusadministrator og opprett vakant (DV/NV) vakt(er) og vis turnus" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="420" y="515" width="150" height="80" as="geometry" />
+          <mxGeometry x="445" y="515" width="150" height="80" as="geometry" />
         </mxCell>
         <mxCell id="JpXMr8tUnl5NB5sbZeJr-8" value="Start Vakans i avd.turnus" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="445" y="650" width="100" height="60" as="geometry" />
@@ -62,7 +62,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="bpJ8O_S1JZ5owJ0o4Rz1" name="Vakans i avd. turnus">
-    <mxGraphModel dx="1617" dy="516" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+    <mxGraphModel dx="2066" dy="1032" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -170,12 +170,8 @@
             <mxPoint x="850" y="630" as="sourcePoint" />
             <mxPoint x="849.75" y="843.04" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="841.75" y="630.04" />
-              <mxPoint x="841.75" y="638.04" />
-              <mxPoint x="819.75" y="638.04" />
-              <mxPoint x="819.75" y="692.04" />
-              <mxPoint x="829.75" y="692.04" />
-              <mxPoint x="829.75" y="843.04" />
+              <mxPoint x="830" y="630" />
+              <mxPoint x="830" y="843" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -214,7 +210,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="mHHK4d2mUXMLSCN07X2n-40" value="&lt;span style=&quot;text-align: start; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);&quot; data-lucid-content=&quot;{&amp;quot;t&amp;quot;:&amp;quot;Har noen meldt seg til vakans?&amp;quot;,&amp;quot;m&amp;quot;:[{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;p&amp;quot;,&amp;quot;v&amp;quot;:1.2},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;c&amp;quot;,&amp;quot;v&amp;quot;:&amp;quot;#000000ff&amp;quot;,&amp;quot;e&amp;quot;:30},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;fsp&amp;quot;,&amp;quot;v&amp;quot;:&amp;quot;ss_presetShapeStyle1_textStyle&amp;quot;,&amp;quot;e&amp;quot;:30},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;s&amp;quot;,&amp;quot;v&amp;quot;:22.22222222222222,&amp;quot;e&amp;quot;:30}]}&quot; data-lucid-type=&quot;application/vnd.lucid.text&quot;&gt;&lt;span style=&quot;font-size: 16.666667px;&quot;&gt;Har noen meldt seg til vakans?&lt;/span&gt;&lt;/span&gt;" style="rhombus;whiteSpace=wrap;html=1;rounded=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="mHHK4d2mUXMLSCN07X2n-40" value="&lt;span style=&quot;text-align: start; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);&quot; data-lucid-content=&quot;{&amp;quot;t&amp;quot;:&amp;quot;Har noen meldt seg til vakans?&amp;quot;,&amp;quot;m&amp;quot;:[{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;p&amp;quot;,&amp;quot;v&amp;quot;:1.2},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;c&amp;quot;,&amp;quot;v&amp;quot;:&amp;quot;#000000ff&amp;quot;,&amp;quot;e&amp;quot;:30},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;fsp&amp;quot;,&amp;quot;v&amp;quot;:&amp;quot;ss_presetShapeStyle1_textStyle&amp;quot;,&amp;quot;e&amp;quot;:30},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;s&amp;quot;,&amp;quot;v&amp;quot;:22.22222222222222,&amp;quot;e&amp;quot;:30}]}&quot; data-lucid-type=&quot;application/vnd.lucid.text&quot;&gt;&lt;span style=&quot;font-size: 16.666667px;&quot;&gt;Tildele vakans?&lt;/span&gt;&lt;/span&gt;" style="rhombus;whiteSpace=wrap;html=1;rounded=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="750" y="1020" width="230" height="82.5" as="geometry" />
         </mxCell>
         <mxCell id="mHHK4d2mUXMLSCN07X2n-60" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mHHK4d2mUXMLSCN07X2n-42" target="mHHK4d2mUXMLSCN07X2n-59">
@@ -223,8 +219,14 @@
         <mxCell id="mHHK4d2mUXMLSCN07X2n-42" value="&lt;div style=&quot;text-align: start;&quot;&gt;&lt;font size=&quot;3&quot;&gt;&lt;span style=&quot;caret-color: rgb(237, 237, 237); color: light-dark(rgb(237, 237, 237), rgb(255, 255, 255));&quot;&gt;Velg fra liste og tildel&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="756.25" y="1130" width="217.5" height="40" as="geometry" />
         </mxCell>
+        <mxCell id="ZQlezni92XnwgF5gyT7I-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mHHK4d2mUXMLSCN07X2n-59" target="ZQlezni92XnwgF5gyT7I-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="mHHK4d2mUXMLSCN07X2n-59" value="&lt;span style=&quot;text-align: start; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);&quot; data-lucid-content=&quot;{&amp;quot;t&amp;quot;:&amp;quot;Oppdater endringer i turnus/arbeidsplan Bekreft godtatt vakans til vakanstaker&amp;quot;,&amp;quot;m&amp;quot;:[{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;p&amp;quot;,&amp;quot;v&amp;quot;:1.2},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;s&amp;quot;,&amp;quot;v&amp;quot;:22.22222222222222,&amp;quot;e&amp;quot;:78},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;fsp&amp;quot;,&amp;quot;v&amp;quot;:&amp;quot;ss_presetShapeStyle1_textStyle&amp;quot;,&amp;quot;e&amp;quot;:78},{&amp;quot;s&amp;quot;:0,&amp;quot;n&amp;quot;:&amp;quot;fsp2&amp;quot;,&amp;quot;v&amp;quot;:&amp;quot;ss_presetShapeStyle1_textStyle&amp;quot;,&amp;quot;e&amp;quot;:78}]}&quot; data-lucid-type=&quot;application/vnd.lucid.text&quot;&gt;&lt;span style=&quot;font-size: 16.666667px;&quot;&gt;Oppdater endringer i turnus/arbeidsplan Bekreft godtatt vakans til vakanstaker og varsle avd. admin&lt;/span&gt;&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="760" y="1220" width="216.25" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="ZQlezni92XnwgF5gyT7I-1" value="Registrer lønnsgrunnlag" style="whiteSpace=wrap;html=1;rounded=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1400" width="216.25" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
